@@ -1,0 +1,24 @@
+{
+  "name": "odin-todo-list",
+  "version": "1.0.0",
+  "description": "Odin | Todo List",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LedaThemis/odin-todo-list.git"
+  },
+  "keywords": [
+    "Odin",
+    "The-Odin-Project",
+    "Todo"
+  ],
+  "author": "Leda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LedaThemis/odin-todo-list/issues"
+  },
+  "homepage": "https://github.com/LedaThemis/odin-todo-list#readme"
+}
