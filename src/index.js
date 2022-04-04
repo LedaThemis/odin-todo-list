@@ -53,6 +53,47 @@ const DOMHelpers = (() => {
   };
 })();
 
+const UI = (() => {
+  const showAddTaskForm = () => {
+    const addTaskFormDiv = document.querySelector('#add-task-div');
+    addTaskFormDiv.style.display = 'grid';
+  };
+
+  const showAddProjectForm = () => {
+    const addProjectFormDiv = document.querySelector('#add-project-div');
+    addProjectFormDiv.style.display = 'grid';
+  };
+
+  const showEditTaskForm = () => {
+    const addProjectFormDiv = document.querySelector('#edit-task-div');
+    addProjectFormDiv.style.display = 'grid';
+  };
+
+  const hideAddTaskForm = () => {
+    const addTaskFormDiv = document.querySelector('#add-task-div');
+    addTaskFormDiv.style.display = 'none';
+  };
+
+  const hideAddProjectForm = () => {
+    const addProjectFormDiv = document.querySelector('#add-project-div');
+    addProjectFormDiv.style.display = 'none';
+  };
+
+  const hideEditTaskForm = () => {
+    const addProjectFormDiv = document.querySelector('#edit-task-div');
+    addProjectFormDiv.style.display = 'none';
+  };
+
+  return {
+    showAddTaskForm,
+    showAddProjectForm,
+    showEditTaskForm,
+    hideAddTaskForm,
+    hideAddProjectForm,
+    hideEditTaskForm,
+  };
+})();
+
 const createTask = (title, dueDate, priority) => {
   let isDone = false;
   let _priority = priority;
@@ -158,36 +199,6 @@ const storage = (() => {
   };
 })();
 
-const showAddTaskForm = () => {
-  const addTaskFormDiv = document.querySelector('#add-task-div');
-  addTaskFormDiv.style.display = 'grid';
-};
-
-const showAddProjectForm = () => {
-  const addProjectFormDiv = document.querySelector('#add-project-div');
-  addProjectFormDiv.style.display = 'grid';
-};
-
-const showEditTaskForm = () => {
-  const addProjectFormDiv = document.querySelector('#edit-task-div');
-  addProjectFormDiv.style.display = 'grid';
-};
-
-const hideAddTaskForm = () => {
-  const addTaskFormDiv = document.querySelector('#add-task-div');
-  addTaskFormDiv.style.display = 'none';
-};
-
-const hideAddProjectForm = () => {
-  const addProjectFormDiv = document.querySelector('#add-project-div');
-  addProjectFormDiv.style.display = 'none';
-};
-
-const hideEditTaskForm = () => {
-  const addProjectFormDiv = document.querySelector('#edit-task-div');
-  addProjectFormDiv.style.display = 'none';
-};
-
 function handleAddTask(e) {
   const projectsDropdown = document.querySelector('#task-project');
   const dropdownValues = DOMHelpers.getProjectsDropdownValues(
@@ -204,11 +215,11 @@ function handleAddTask(e) {
   dropdownValues.forEach((dropdownValue) =>
     projectsDropdown.appendChild(dropdownValue)
   );
-  showAddTaskForm();
+  UI.showAddTaskForm();
 }
 
 function handleCloseForm(e) {
-  hideAddTaskForm();
+  UI.hideAddTaskForm();
 }
 
 function handleSubmitTask(e) {
@@ -236,13 +247,13 @@ function handleSubmitTask(e) {
   storage.addTask(task, projectId);
 
   form.reset();
-  hideAddTaskForm();
+  UI.hideAddTaskForm();
 
   renderTasks(storage.getTasks());
 }
 
 function handleAddProject(e) {
-  showAddProjectForm();
+  UI.showAddProjectForm();
 }
 const handleProjectDelete = (e, projectId) => {
   storage.removeProject(projectId);
@@ -251,7 +262,7 @@ const handleProjectDelete = (e, projectId) => {
 };
 
 const handleCloseProjectForm = () => {
-  hideAddProjectForm();
+  UI.hideAddProjectForm();
 };
 
 function handleSubmitProject(e) {
@@ -270,7 +281,7 @@ function handleSubmitProject(e) {
   storage.addProject(name);
 
   form.reset();
-  hideAddProjectForm();
+  UI.hideAddProjectForm();
 
   renderProjects(storage.getProjects());
 }
@@ -475,7 +486,7 @@ const handleTaskEdit = (e, taskId) => {
   const submitEditTaskButton = document.querySelector('#submit-edit-task');
   submitEditTaskButton.dataset.key = taskId;
 
-  showEditTaskForm();
+  UI.showEditTaskForm();
 };
 
 function handleSubmitEditTask(e) {
@@ -507,13 +518,13 @@ function handleSubmitEditTask(e) {
   }
 
   form.reset();
-  hideEditTaskForm();
+  UI.hideEditTaskForm();
 
   renderTasks(storage.getTasks());
 }
 
 const handleCloseEditTaskForm = (e) => {
-  hideEditTaskForm();
+  UI.hideEditTaskForm();
 };
 
 const handleViewAllClick = (e) => {
