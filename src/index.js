@@ -5,6 +5,28 @@ import clearIcon from './clear_icon.svg';
 let SELECTED_STATUS = 0;
 let SELECTED_PROJECT_ID = -1;
 
+const convertTaskForLocalStorage = (task) => {
+  const taskName = task.getTitle();
+  const taskDueDate = task.getDueDate();
+  const taskPriority = task.getPriority();
+  const taskIsDone = task.getIsDone();
+
+  return { taskName, taskDueDate, taskPriority, taskIsDone };
+};
+
+const convertTaskForUse = ({
+  taskName,
+  taskDueDate,
+  taskPriority,
+  taskIsDone,
+}) => {
+  const task = createTask(taskName, taskDueDate, taskPriority);
+  if (taskIsDone) {
+    task.setDone();
+  }
+  return task;
+};
+
 const createTask = (title, dueDate, priority) => {
   let isDone = false;
   let _priority = priority;
@@ -50,8 +72,26 @@ const createTask = (title, dueDate, priority) => {
 };
 
 const storage = (() => {
-  let projects = ['default'];
-  let tasks = [];
+  let projects;
+  if (localStorage.getItem('projects') === null) {
+    projects = ['default'];
+  } else {
+    projects = JSON.parse(localStorage.getItem('projects'));
+  }
+
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    const localStorageTasks = JSON.parse(localStorage.getItem('tasks'));
+
+    tasks = localStorageTasks.map((t) => {
+      const projectId = t.projectId;
+      const task = convertTaskForUse(t.task);
+
+      return { task, projectId };
+    });
+  }
 
   const addProject = (name) => {
     projects.push(name);
@@ -467,6 +507,16 @@ const renderTasks = (tasks) => {
     const taskHTML = getTaskHTML(task, id);
     main.appendChild(taskHTML);
   });
+
+  // localStorage
+  tasks = storage.getTasks();
+  const saveableTasks = tasks.map((t) => {
+    const task = convertTaskForLocalStorage(t.task);
+    const projectId = t.projectId;
+    return { task, projectId };
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(saveableTasks));
 };
 
 const renderProjects = (projects) => {
@@ -476,6 +526,8 @@ const renderProjects = (projects) => {
     const projectHTML = getProjectHTML(project, id);
     projectsUl.appendChild(projectHTML);
   });
+
+  localStorage.setItem('projects', JSON.stringify(projects));
 };
 
 const renderStatus = () => {
@@ -515,10 +567,6 @@ submitEditTaskButton.addEventListener('click', handleSubmitEditTask);
 
 const viewAll = document.querySelector('#view-all');
 viewAll.addEventListener('click', handleViewAllClick);
-
-const task = createTask('Buy Apples', '2022-04-06', 'high');
-
-storage.addTask(task, 0);
 
 renderTasks(storage.getTasks());
 renderProjects(storage.getProjects());
