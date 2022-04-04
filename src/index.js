@@ -6,6 +6,50 @@ let SELECTED_STATUS = 0;
 let SELECTED_PROJECT_ID = -1;
 
 const helpers = (() => {
+  const createTask = (title, dueDate, priority) => {
+    let isDone = false;
+    let _priority = priority;
+    let _title = title;
+    let _dueDate = dueDate;
+
+    const getTitle = () => _title;
+    const getDueDate = () => _dueDate;
+    const getIsDone = () => isDone;
+    const getPriority = () => _priority;
+
+    const setTitle = (newTitle) => {
+      _title = newTitle;
+    };
+
+    const setDueDate = (newDueDate) => {
+      _dueDate = newDueDate;
+    };
+
+    const setPriority = (newPriority) => {
+      _priority = newPriority;
+    };
+
+    const setDone = () => {
+      isDone = true;
+    };
+
+    const setDoing = () => {
+      isDone = false;
+    };
+
+    return {
+      getTitle,
+      getDueDate,
+      getPriority,
+      getIsDone,
+      setTitle,
+      setDueDate,
+      setPriority,
+      setDone,
+      setDoing,
+    };
+  };
+
   const convertTaskForLocalStorage = (task) => {
     const taskName = task.getTitle();
     const taskDueDate = task.getDueDate();
@@ -16,7 +60,7 @@ const helpers = (() => {
   };
 
   const convertTaskForUse = ({ taskName, taskDueDate, taskPriority, taskIsDone }) => {
-    const task = createTask(taskName, taskDueDate, taskPriority);
+    const task = helpers.createTask(taskName, taskDueDate, taskPriority);
     if (taskIsDone) {
       task.setDone();
     }
@@ -24,6 +68,7 @@ const helpers = (() => {
   };
 
   return {
+    createTask,
     convertTaskForLocalStorage,
     convertTaskForUse,
   };
@@ -96,7 +141,7 @@ const DOMHandlers = (() => {
     }
     p.textContent = '';
 
-    const task = createTask(title, dueDate, priority);
+    const task = helpers.createTask(title, dueDate, priority);
 
     storage.addTask(task, projectId);
 
@@ -485,50 +530,6 @@ const getHTML = (() => {
     status,
   };
 })();
-
-const createTask = (title, dueDate, priority) => {
-  let isDone = false;
-  let _priority = priority;
-  let _title = title;
-  let _dueDate = dueDate;
-
-  const getTitle = () => _title;
-  const getDueDate = () => _dueDate;
-  const getIsDone = () => isDone;
-  const getPriority = () => _priority;
-
-  const setTitle = (newTitle) => {
-    _title = newTitle;
-  };
-
-  const setDueDate = (newDueDate) => {
-    _dueDate = newDueDate;
-  };
-
-  const setPriority = (newPriority) => {
-    _priority = newPriority;
-  };
-
-  const setDone = () => {
-    isDone = true;
-  };
-
-  const setDoing = () => {
-    isDone = false;
-  };
-
-  return {
-    getTitle,
-    getDueDate,
-    getPriority,
-    getIsDone,
-    setTitle,
-    setDueDate,
-    setPriority,
-    setDone,
-    setDoing,
-  };
-};
 
 const storage = (() => {
   let projects;
