@@ -160,7 +160,8 @@ body {
   border-radius: 1rem;
 }
 
-.form-buttons {
+.form-buttons,
+.remove-project-buttons {
   border: none;
   background-color: var(--secondary-bg-color);
   color: var(--main-text-color);
@@ -193,4 +194,14 @@ body {
 }
 #project-name {
   width: 100%;
+}
+
+.project-title {
+  margin: 0;
+}
+
+.project-names {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

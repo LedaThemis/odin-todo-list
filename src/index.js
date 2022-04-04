@@ -180,6 +180,10 @@ function handleSubmitTask(e) {
 function handleAddProject(e) {
   showAddProjectForm();
 }
+const handleProjectDelete = (e, projectId) => {
+  storage.removeProject(projectId);
+  renderProjects(storage.getProjects());
+};
 
 const handleCloseProjectForm = () => {
   hideAddProjectForm();
@@ -257,9 +261,24 @@ const getTaskHTML = (task, id) => {
 
 const getProjectHTML = (name, id) => {
   const li = document.createElement('li');
-  li.innerText = name;
-  li.dataset.key = id;
   li.classList.add('project-names');
+
+  const p = document.createElement('p');
+  p.innerText = name;
+  p.classList.add('project-title');
+
+  li.appendChild(p);
+
+  if (id !== 0) {
+    const button = document.createElement('button');
+    button.classList.add('remove-project-buttons');
+    button.type = 'button';
+    button.dataset.key = id;
+    button.innerText = '✕';
+
+    button.addEventListener('click', (e) => handleProjectDelete(e, id));
+    li.appendChild(button);
+  }
 
   return li;
 };
