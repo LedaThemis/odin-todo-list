@@ -314,7 +314,11 @@ const render = (() => {
     main.replaceChildren();
 
     tasks.forEach((task, id) => {
-      const taskHTML = getTaskHTML(task, id, !passFilter(task, task.projectId));
+      const taskHTML = getHTML.task(
+        task,
+        id,
+        !passFilter(task, task.projectId)
+      );
       main.appendChild(taskHTML);
     });
 
@@ -333,7 +337,7 @@ const render = (() => {
     const projectsUl = document.querySelector('#projects-list');
     projectsUl.replaceChildren();
     projects.forEach((project, id) => {
-      const projectHTML = getProjectHTML(project, id);
+      const projectHTML = getHTML.project(project, id);
       projectsUl.appendChild(projectHTML);
     });
 
@@ -346,7 +350,7 @@ const render = (() => {
     statusList.replaceChildren();
 
     status.forEach((s, i) => {
-      const liHTML = getStatusHTML(s, i);
+      const liHTML = getHTML.status(s, i);
       statusList.appendChild(liHTML);
     });
   };
@@ -354,6 +358,143 @@ const render = (() => {
   return {
     tasks,
     projects,
+    status,
+  };
+})();
+
+const getHTML = (() => {
+  const task = (task, id, isHidden) => {
+    const taskDiv = document.createElement('div');
+    taskDiv.classList.add('task');
+
+    if (isHidden) {
+      taskDiv.style.display = 'none';
+    }
+
+    let priorityClass;
+    switch (task.task.getPriority()) {
+      case 'high':
+        priorityClass = 'high-priority-task';
+        break;
+      case 'medium':
+        priorityClass = 'medium-priority-task';
+        break;
+      case 'low':
+        priorityClass = 'low-priority-task';
+        break;
+    }
+
+    taskDiv.classList.add(priorityClass);
+
+    const taskInfoDiv = document.createElement('div');
+    taskInfoDiv.classList.add('task-info');
+
+    const taskCheckbox = document.createElement('input');
+    taskCheckbox.type = 'checkbox';
+    taskCheckbox.name = `task-checkbox-${id}`;
+    taskCheckbox.id = `task-checkbox-${id}`;
+    taskCheckbox.checked = task.task.getIsDone();
+    taskCheckbox.classList.add('task-checkbox');
+    taskCheckbox.addEventListener('click', (e) =>
+      handleTaskCheckboxClick(e, id)
+    );
+
+    const taskTitle = document.createElement('p');
+    taskTitle.id = `task-title-${id}`;
+    taskTitle.classList.add('task-title');
+    taskTitle.innerText = task.task.getTitle();
+
+    taskInfoDiv.appendChild(taskCheckbox);
+    taskInfoDiv.appendChild(taskTitle);
+
+    const rightDiv = document.createElement('div');
+    rightDiv.classList.add('right-task-div');
+
+    const taskDueDate = document.createElement('p');
+    taskDueDate.innerText = task.task.getDueDate();
+
+    const taskButtonsDiv = document.createElement('div');
+    taskButtonsDiv.classList.add('task-buttons');
+
+    const editTaskButton = document.createElement('img');
+    editTaskButton.src = editIcon;
+    editTaskButton.alt = 'edit task';
+    editTaskButton.id = `task-edit-${id}`;
+    editTaskButton.classList.add('task-edit');
+    editTaskButton.addEventListener('click', (e) => handleTaskEdit(e, id));
+
+    const deleteTaskButton = document.createElement('img');
+    deleteTaskButton.src = clearIcon;
+    deleteTaskButton.alt = 'delete task';
+    deleteTaskButton.id = `task-delete-${id}`;
+    deleteTaskButton.classList.add('task-delete');
+    deleteTaskButton.addEventListener('click', (e) => handleTaskDelete(e, id));
+
+    taskButtonsDiv.appendChild(editTaskButton);
+    taskButtonsDiv.appendChild(deleteTaskButton);
+
+    rightDiv.appendChild(taskDueDate);
+    rightDiv.appendChild(taskButtonsDiv);
+
+    taskDiv.appendChild(taskInfoDiv);
+    taskDiv.appendChild(rightDiv);
+
+    return taskDiv;
+  };
+
+  const project = (name, id) => {
+    const li = document.createElement('li');
+    li.classList.add('project-names');
+
+    if (id === SELECTED_PROJECT_ID) {
+      li.classList.add('selected-project');
+    }
+    if (SELECTED_PROJECT_ID === -1) {
+      const viewAll = document.querySelector('#view-all');
+      viewAll.classList.add('selected-project');
+    } else {
+      const viewAll = document.querySelector('#view-all');
+      viewAll.classList.remove('selected-project');
+    }
+
+    li.addEventListener('click', (e) => handleProjectSelect(e, id));
+
+    const p = document.createElement('p');
+    p.innerText = name;
+    p.classList.add('project-title');
+
+    li.appendChild(p);
+
+    if (id !== 0) {
+      const button = document.createElement('button');
+      button.classList.add('remove-project-buttons');
+      button.type = 'button';
+      button.dataset.key = id;
+      button.innerText = '✕';
+
+      button.addEventListener('click', (e) => handleProjectDelete(e, id));
+      li.appendChild(button);
+    }
+
+    return li;
+  };
+
+  const status = (s, id) => {
+    const li = document.createElement('li');
+    li.innerText = s;
+    li.classList.add('status-choice');
+
+    li.addEventListener('click', (e) => handleStatusClick(e, id));
+    if (SELECTED_STATUS === id) {
+      li.classList.add('selected-status');
+    }
+
+    return li;
+  };
+
+  return {
+    task,
+    project,
     status,
   };
 })();
@@ -473,133 +614,6 @@ const passFilter = (task, projectId) => {
     );
   };
   return inProject(projectId) && inStatus(task.task.getIsDone());
-};
-
-const getTaskHTML = (task, id, isHidden) => {
-  const taskDiv = document.createElement('div');
-  taskDiv.classList.add('task');
-
-  if (isHidden) {
-    taskDiv.style.display = 'none';
-  }
-
-  let priorityClass;
-  switch (task.task.getPriority()) {
-    case 'high':
-      priorityClass = 'high-priority-task';
-      break;
-    case 'medium':
-      priorityClass = 'medium-priority-task';
-      break;
-    case 'low':
-      priorityClass = 'low-priority-task';
-      break;
-  }
-
-  taskDiv.classList.add(priorityClass);
-
-  const taskInfoDiv = document.createElement('div');
-  taskInfoDiv.classList.add('task-info');
-
-  const taskCheckbox = document.createElement('input');
-  taskCheckbox.type = 'checkbox';
-  taskCheckbox.name = `task-checkbox-${id}`;
-  taskCheckbox.id = `task-checkbox-${id}`;
-  taskCheckbox.checked = task.task.getIsDone();
-  taskCheckbox.classList.add('task-checkbox');
-  taskCheckbox.addEventListener('click', (e) => handleTaskCheckboxClick(e, id));
-
-  const taskTitle = document.createElement('p');
-  taskTitle.id = `task-title-${id}`;
-  taskTitle.classList.add('task-title');
-  taskTitle.innerText = task.task.getTitle();
-
-  taskInfoDiv.appendChild(taskCheckbox);
-  taskInfoDiv.appendChild(taskTitle);
-
-  const rightDiv = document.createElement('div');
-  rightDiv.classList.add('right-task-div');
-
-  const taskDueDate = document.createElement('p');
-  taskDueDate.innerText = task.task.getDueDate();
-
-  const taskButtonsDiv = document.createElement('div');
-  taskButtonsDiv.classList.add('task-buttons');
-
-  const editTaskButton = document.createElement('img');
-  editTaskButton.src = editIcon;
-  editTaskButton.alt = 'edit task';
-  editTaskButton.id = `task-edit-${id}`;
-  editTaskButton.classList.add('task-edit');
-  editTaskButton.addEventListener('click', (e) => handleTaskEdit(e, id));
-
-  const deleteTaskButton = document.createElement('img');
-  deleteTaskButton.src = clearIcon;
-  deleteTaskButton.alt = 'delete task';
-  deleteTaskButton.id = `task-delete-${id}`;
-  deleteTaskButton.classList.add('task-delete');
-  deleteTaskButton.addEventListener('click', (e) => handleTaskDelete(e, id));
-
-  taskButtonsDiv.appendChild(editTaskButton);
-  taskButtonsDiv.appendChild(deleteTaskButton);
-
-  rightDiv.appendChild(taskDueDate);
-  rightDiv.appendChild(taskButtonsDiv);
-
-  taskDiv.appendChild(taskInfoDiv);
-  taskDiv.appendChild(rightDiv);
-
-  return taskDiv;
-};
-
-const getProjectHTML = (name, id) => {
-  const li = document.createElement('li');
-  li.classList.add('project-names');
-
-  if (id === SELECTED_PROJECT_ID) {
-    li.classList.add('selected-project');
-  }
-  if (SELECTED_PROJECT_ID === -1) {
-    const viewAll = document.querySelector('#view-all');
-    viewAll.classList.add('selected-project');
-  } else {
-    const viewAll = document.querySelector('#view-all');
-    viewAll.classList.remove('selected-project');
-  }
-
-  li.addEventListener('click', (e) => handleProjectSelect(e, id));
-
-  const p = document.createElement('p');
-  p.innerText = name;
-  p.classList.add('project-title');
-
-  li.appendChild(p);
-
-  if (id !== 0) {
-    const button = document.createElement('button');
-    button.classList.add('remove-project-buttons');
-    button.type = 'button';
-    button.dataset.key = id;
-    button.innerText = '✕';
-
-    button.addEventListener('click', (e) => handleProjectDelete(e, id));
-    li.appendChild(button);
-  }
-
-  return li;
-};
-
-const getStatusHTML = (s, id) => {
-  const li = document.createElement('li');
-  li.innerText = s;
-  li.classList.add('status-choice');
-
-  li.addEventListener('click', (e) => handleStatusClick(e, id));
-  if (SELECTED_STATUS === id) {
-    li.classList.add('selected-status');
-  }
-
-  return li;
 };
 
 const addTaskButton = document.querySelector('#add-task');
