@@ -309,6 +309,18 @@ const UI = (() => {
 })();
 
 const render = (() => {
+  const passFilter = (task, projectId) => {
+    const inProject = (projectId) => {
+      return SELECTED_PROJECT_ID === -1 || projectId === SELECTED_PROJECT_ID;
+    };
+    const inStatus = (isDone) => {
+      return (
+        (isDone && SELECTED_STATUS === 1) || (!isDone && SELECTED_STATUS === 0)
+      );
+    };
+    return inProject(projectId) && inStatus(task.task.getIsDone());
+  };
+
   const tasks = (tasks) => {
     const main = document.querySelector('#main');
     main.replaceChildren();
@@ -603,18 +615,6 @@ const storage = (() => {
     setTaskProjectId,
   };
 })();
-
-const passFilter = (task, projectId) => {
-  const inProject = (projectId) => {
-    return SELECTED_PROJECT_ID === -1 || projectId === SELECTED_PROJECT_ID;
-  };
-  const inStatus = (isDone) => {
-    return (
-      (isDone && SELECTED_STATUS === 1) || (!isDone && SELECTED_STATUS === 0)
-    );
-  };
-  return inProject(projectId) && inStatus(task.task.getIsDone());
-};
 
 const addTaskButton = document.querySelector('#add-task');
 addTaskButton.addEventListener('click', DOMHandlers.handleAddTask);
