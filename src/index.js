@@ -34,6 +34,25 @@ const helpers = (() => {
   };
 })();
 
+const DOMHelpers = (() => {
+  const createOptionElement = (name, value) => {
+    const option = document.createElement('option');
+    option.innerText = name;
+    option.value = value;
+
+    return option;
+  };
+
+  const getProjectsDropdownValues = (projects) => {
+    return projects.map((project, i) => createOptionElement(project, i));
+  };
+
+  return {
+    createOptionElement,
+    getProjectsDropdownValues,
+  };
+})();
+
 const createTask = (title, dueDate, priority) => {
   let isDone = false;
   let _priority = priority;
@@ -139,18 +158,6 @@ const storage = (() => {
   };
 })();
 
-const createOptionElement = (name, value) => {
-  const option = document.createElement('option');
-  option.innerText = name;
-  option.value = value;
-
-  return option;
-};
-
-const getProjectsDropdownValues = (projects) => {
-  return projects.map((project, i) => createOptionElement(project, i));
-};
-
 const showAddTaskForm = () => {
   const addTaskFormDiv = document.querySelector('#add-task-div');
   addTaskFormDiv.style.display = 'grid';
@@ -183,11 +190,13 @@ const hideEditTaskForm = () => {
 
 function handleAddTask(e) {
   const projectsDropdown = document.querySelector('#task-project');
-  const dropdownValues = getProjectsDropdownValues(storage.getProjects());
+  const dropdownValues = DOMHelpers.getProjectsDropdownValues(
+    storage.getProjects()
+  );
 
   projectsDropdown.replaceChildren();
 
-  const emptyOption = createOptionElement('', '');
+  const emptyOption = DOMHelpers.createOptionElement('', '');
   emptyOption.selected = true;
   emptyOption.disabled = true;
   projectsDropdown.appendChild(emptyOption);
@@ -434,11 +443,13 @@ const handleTaskDelete = (e, taskId) => {
 
 const handleTaskEdit = (e, taskId) => {
   const projectsDropdown = document.querySelector('#edit-task-project');
-  const dropdownValues = getProjectsDropdownValues(storage.getProjects());
+  const dropdownValues = DOMHelpers.getProjectsDropdownValues(
+    storage.getProjects()
+  );
 
   projectsDropdown.replaceChildren();
 
-  const emptyOption = createOptionElement('', '');
+  const emptyOption = DOMHelpers.createOptionElement('', '');
   emptyOption.selected = true;
   emptyOption.disabled = true;
   projectsDropdown.appendChild(emptyOption);
