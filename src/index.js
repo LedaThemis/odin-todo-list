@@ -53,6 +53,220 @@ const DOMHelpers = (() => {
   };
 })();
 
+const DOMHandlers = (() => {
+  const handleAddTask = (e) => {
+    const projectsDropdown = document.querySelector('#task-project');
+    const dropdownValues = DOMHelpers.getProjectsDropdownValues(
+      storage.getProjects()
+    );
+
+    projectsDropdown.replaceChildren();
+
+    const emptyOption = DOMHelpers.createOptionElement('', '');
+    emptyOption.selected = true;
+    emptyOption.disabled = true;
+    projectsDropdown.appendChild(emptyOption);
+
+    dropdownValues.forEach((dropdownValue) =>
+      projectsDropdown.appendChild(dropdownValue)
+    );
+    UI.showAddTaskForm();
+  };
+
+  const handleAddProject = (e) => {
+    UI.showAddProjectForm();
+  };
+
+  const handleCloseTaskForm = (e) => {
+    UI.hideAddTaskForm();
+  };
+
+  const handleCloseProjectForm = () => {
+    UI.hideAddProjectForm();
+  };
+
+  const handleCloseEditTaskForm = (e) => {
+    UI.hideEditTaskForm();
+  };
+
+  const handleSubmitTask = (e) => {
+    e.preventDefault();
+    const form = document.querySelector('#add-task-form');
+    const formData = new FormData(form);
+    const title = formData.get('task-name');
+    const dueDate = formData.get('task-dueDate');
+    const priority = formData.get('task-priority');
+    const projectId = parseInt(formData.get('task-project'));
+
+    const p = document.querySelector('#fill-all-required-fields');
+    if (
+      title === '' ||
+      (dueDate === '') | (priority === null) ||
+      isNaN(projectId)
+    ) {
+      p.textContent = 'Please fill all the fields.';
+      return;
+    }
+    p.textContent = '';
+
+    const task = createTask(title, dueDate, priority);
+
+    storage.addTask(task, projectId);
+
+    form.reset();
+    UI.hideAddTaskForm();
+
+    renderTasks(storage.getTasks());
+  };
+
+  const handleSubmitProject = (e) => {
+    e.preventDefault();
+    const form = document.querySelector('#add-project-form');
+    const formData = new FormData(form);
+    const name = formData.get('project-name');
+
+    const p = document.querySelector('#fill-project-name');
+    if (!name) {
+      p.textContent = 'Please provide a project name.';
+      return;
+    }
+    p.textContent = '';
+
+    storage.addProject(name);
+
+    form.reset();
+    UI.hideAddProjectForm();
+
+    renderProjects(storage.getProjects());
+  };
+  const handleSubmitEditTask = (e) => {
+    e.preventDefault();
+    const form = document.querySelector('#edit-task-form');
+    const formData = new FormData(form);
+    const title = formData.get('edit-task-name');
+    const dueDate = formData.get('edit-task-dueDate');
+    const priority = formData.get('edit-task-priority');
+    const projectId = parseInt(formData.get('edit-task-project'));
+
+    const taskId = parseInt(e.target.dataset.key);
+    const task = storage.getTasks()[taskId].task;
+
+    if (title !== '') {
+      task.setTitle(title);
+    }
+
+    if (dueDate !== '') {
+      task.setDueDate(dueDate);
+    }
+
+    if (priority !== null) {
+      task.setPriority(priority);
+    }
+
+    if (!isNaN(projectId)) {
+      storage.setTaskProjectId(taskId, projectId);
+    }
+
+    form.reset();
+    UI.hideEditTaskForm();
+
+    renderTasks(storage.getTasks());
+  };
+  const handleProjectDelete = (e, projectId) => {
+    storage.removeProject(projectId);
+    renderProjects(storage.getProjects());
+    renderTasks(storage.getTasks());
+  };
+
+  const handleProjectSelect = (e, id) => {
+    SELECTED_PROJECT_ID = id;
+    renderProjects(storage.getProjects());
+    renderTasks(storage.getTasks());
+  };
+
+  const handleStatusClick = (e, id) => {
+    SELECTED_STATUS = id;
+    renderStatus();
+    renderTasks(storage.getTasks());
+  };
+
+  const handleTaskCheckboxClick = (e, taskId) => {
+    if (e.target.checked) {
+      storage.getTasks()[taskId].task.setDone();
+    } else {
+      storage.getTasks()[taskId].task.setDoing();
+    }
+
+    renderTasks(storage.getTasks());
+  };
+
+  const handleTaskDelete = (e, taskId) => {
+    storage.removeTask(taskId);
+    renderTasks(storage.getTasks());
+  };
+
+  const handleTaskEdit = (e, taskId) => {
+    const projectsDropdown = document.querySelector('#edit-task-project');
+    const dropdownValues = DOMHelpers.getProjectsDropdownValues(
+      storage.getProjects()
+    );
+
+    projectsDropdown.replaceChildren();
+
+    const emptyOption = DOMHelpers.createOptionElement('', '');
+    emptyOption.selected = true;
+    emptyOption.disabled = true;
+    projectsDropdown.appendChild(emptyOption);
+
+    dropdownValues.forEach((dropdownValue) =>
+      projectsDropdown.appendChild(dropdownValue)
+    );
+
+    const task = storage.getTasks()[taskId].task;
+
+    const editTaskNameInput = document.querySelector('#edit-task-name');
+    editTaskNameInput.value = task.getTitle();
+
+    const editTaskDueDateInput = document.querySelector('#edit-task-dueDate');
+    editTaskDueDateInput.value = task.getDueDate();
+
+    const editTaskPriorityInput = document.querySelector('#edit-task-priority');
+    editTaskPriorityInput.value = task.getPriority();
+
+    const editTaskProjectInput = document.querySelector('#edit-task-project');
+    editTaskProjectInput.value = storage.getTasks()[taskId].projectId;
+
+    const submitEditTaskButton = document.querySelector('#submit-edit-task');
+    submitEditTaskButton.dataset.key = taskId;
+
+    UI.showEditTaskForm();
+  };
+
+  const handleViewAllClick = (e) => {
+    SELECTED_PROJECT_ID = -1;
+    renderProjects(storage.getProjects());
+    renderTasks(storage.getTasks());
+  };
+
+  return {
+    handleAddTask,
+    handleAddProject,
+    handleCloseTaskForm,
+    handleCloseProjectForm,
+    handleCloseEditTaskForm,
+    handleSubmitTask,
+    handleSubmitProject,
+    handleSubmitEditTask,
+    handleProjectDelete,
+    handleProjectSelect,
+    handleStatusClick,
+    handleTaskCheckboxClick,
+    handleTaskDelete,
+    handleTaskEdit,
+    handleViewAllClick,
+  };
+})();
+
 const UI = (() => {
   const showAddTaskForm = () => {
     const addTaskFormDiv = document.querySelector('#add-task-div');
@@ -199,105 +413,6 @@ const storage = (() => {
   };
 })();
 
-function handleAddTask(e) {
-  const projectsDropdown = document.querySelector('#task-project');
-  const dropdownValues = DOMHelpers.getProjectsDropdownValues(
-    storage.getProjects()
-  );
-
-  projectsDropdown.replaceChildren();
-
-  const emptyOption = DOMHelpers.createOptionElement('', '');
-  emptyOption.selected = true;
-  emptyOption.disabled = true;
-  projectsDropdown.appendChild(emptyOption);
-
-  dropdownValues.forEach((dropdownValue) =>
-    projectsDropdown.appendChild(dropdownValue)
-  );
-  UI.showAddTaskForm();
-}
-
-function handleCloseForm(e) {
-  UI.hideAddTaskForm();
-}
-
-function handleSubmitTask(e) {
-  e.preventDefault();
-  const form = document.querySelector('#add-task-form');
-  const formData = new FormData(form);
-  const title = formData.get('task-name');
-  const dueDate = formData.get('task-dueDate');
-  const priority = formData.get('task-priority');
-  const projectId = parseInt(formData.get('task-project'));
-
-  const p = document.querySelector('#fill-all-required-fields');
-  if (
-    title === '' ||
-    (dueDate === '') | (priority === null) ||
-    isNaN(projectId)
-  ) {
-    p.textContent = 'Please fill all the fields.';
-    return;
-  }
-  p.textContent = '';
-
-  const task = createTask(title, dueDate, priority);
-
-  storage.addTask(task, projectId);
-
-  form.reset();
-  UI.hideAddTaskForm();
-
-  renderTasks(storage.getTasks());
-}
-
-function handleAddProject(e) {
-  UI.showAddProjectForm();
-}
-const handleProjectDelete = (e, projectId) => {
-  storage.removeProject(projectId);
-  renderProjects(storage.getProjects());
-  renderTasks(storage.getTasks());
-};
-
-const handleCloseProjectForm = () => {
-  UI.hideAddProjectForm();
-};
-
-function handleSubmitProject(e) {
-  e.preventDefault();
-  const form = document.querySelector('#add-project-form');
-  const formData = new FormData(form);
-  const name = formData.get('project-name');
-
-  const p = document.querySelector('#fill-project-name');
-  if (!name) {
-    p.textContent = 'Please provide a project name.';
-    return;
-  }
-  p.textContent = '';
-
-  storage.addProject(name);
-
-  form.reset();
-  UI.hideAddProjectForm();
-
-  renderProjects(storage.getProjects());
-}
-
-const handleProjectSelect = (e, id) => {
-  SELECTED_PROJECT_ID = id;
-  renderProjects(storage.getProjects());
-  renderTasks(storage.getTasks());
-};
-
-const handleStatusClick = (e, id) => {
-  SELECTED_STATUS = id;
-  renderStatus();
-  renderTasks(storage.getTasks());
-};
-
 const passFilter = (task, projectId) => {
   const inProject = (projectId) => {
     return SELECTED_PROJECT_ID === -1 || projectId === SELECTED_PROJECT_ID;
@@ -437,102 +552,6 @@ const getStatusHTML = (s, id) => {
   return li;
 };
 
-const handleTaskCheckboxClick = (e, taskId) => {
-  if (e.target.checked) {
-    storage.getTasks()[taskId].task.setDone();
-  } else {
-    storage.getTasks()[taskId].task.setDoing();
-  }
-
-  renderTasks(storage.getTasks());
-};
-
-const handleTaskDelete = (e, taskId) => {
-  storage.removeTask(taskId);
-  renderTasks(storage.getTasks());
-};
-
-const handleTaskEdit = (e, taskId) => {
-  const projectsDropdown = document.querySelector('#edit-task-project');
-  const dropdownValues = DOMHelpers.getProjectsDropdownValues(
-    storage.getProjects()
-  );
-
-  projectsDropdown.replaceChildren();
-
-  const emptyOption = DOMHelpers.createOptionElement('', '');
-  emptyOption.selected = true;
-  emptyOption.disabled = true;
-  projectsDropdown.appendChild(emptyOption);
-
-  dropdownValues.forEach((dropdownValue) =>
-    projectsDropdown.appendChild(dropdownValue)
-  );
-
-  const task = storage.getTasks()[taskId].task;
-
-  const editTaskNameInput = document.querySelector('#edit-task-name');
-  editTaskNameInput.value = task.getTitle();
-
-  const editTaskDueDateInput = document.querySelector('#edit-task-dueDate');
-  editTaskDueDateInput.value = task.getDueDate();
-
-  const editTaskPriorityInput = document.querySelector('#edit-task-priority');
-  editTaskPriorityInput.value = task.getPriority();
-
-  const editTaskProjectInput = document.querySelector('#edit-task-project');
-  editTaskProjectInput.value = storage.getTasks()[taskId].projectId;
-
-  const submitEditTaskButton = document.querySelector('#submit-edit-task');
-  submitEditTaskButton.dataset.key = taskId;
-
-  UI.showEditTaskForm();
-};
-
-function handleSubmitEditTask(e) {
-  e.preventDefault();
-  const form = document.querySelector('#edit-task-form');
-  const formData = new FormData(form);
-  const title = formData.get('edit-task-name');
-  const dueDate = formData.get('edit-task-dueDate');
-  const priority = formData.get('edit-task-priority');
-  const projectId = parseInt(formData.get('edit-task-project'));
-
-  const taskId = parseInt(e.target.dataset.key);
-  const task = storage.getTasks()[taskId].task;
-
-  if (title !== '') {
-    task.setTitle(title);
-  }
-
-  if (dueDate !== '') {
-    task.setDueDate(dueDate);
-  }
-
-  if (priority !== null) {
-    task.setPriority(priority);
-  }
-
-  if (!isNaN(projectId)) {
-    storage.setTaskProjectId(taskId, projectId);
-  }
-
-  form.reset();
-  UI.hideEditTaskForm();
-
-  renderTasks(storage.getTasks());
-}
-
-const handleCloseEditTaskForm = (e) => {
-  UI.hideEditTaskForm();
-};
-
-const handleViewAllClick = (e) => {
-  SELECTED_PROJECT_ID = -1;
-  renderProjects(storage.getProjects());
-  renderTasks(storage.getTasks());
-};
-
 const renderTasks = (tasks) => {
   const main = document.querySelector('#main');
   main.replaceChildren();
@@ -576,31 +595,37 @@ const renderStatus = () => {
 };
 
 const addTaskButton = document.querySelector('#add-task');
-addTaskButton.addEventListener('click', handleAddTask);
+addTaskButton.addEventListener('click', DOMHandlers.handleAddTask);
 
 const addProjectButton = document.querySelector('#add-project');
-addProjectButton.addEventListener('click', handleAddProject);
+addProjectButton.addEventListener('click', DOMHandlers.handleAddProject);
 
 const closeFormButton = document.querySelector('#close-task-form');
-closeFormButton.addEventListener('click', handleCloseForm);
+closeFormButton.addEventListener('click', DOMHandlers.handleCloseTaskForm);
 
 const closeProjectForm = document.querySelector('#close-project-form');
-closeProjectForm.addEventListener('click', handleCloseProjectForm);
+closeProjectForm.addEventListener('click', DOMHandlers.handleCloseProjectForm);
 
 const closeEditTaskForm = document.querySelector('#close-task-edit-form');
-closeEditTaskForm.addEventListener('click', handleCloseEditTaskForm);
+closeEditTaskForm.addEventListener(
+  'click',
+  DOMHandlers.handleCloseEditTaskForm
+);
 
 const submitTaskButton = document.querySelector('#submit-task');
-submitTaskButton.addEventListener('click', handleSubmitTask);
+submitTaskButton.addEventListener('click', DOMHandlers.handleSubmitTask);
 
 const submitProjectButton = document.querySelector('#submit-project');
-submitProjectButton.addEventListener('click', handleSubmitProject);
+submitProjectButton.addEventListener('click', DOMHandlers.handleSubmitProject);
 
 const submitEditTaskButton = document.querySelector('#submit-edit-task');
-submitEditTaskButton.addEventListener('click', handleSubmitEditTask);
+submitEditTaskButton.addEventListener(
+  'click',
+  DOMHandlers.handleSubmitEditTask
+);
 
 const viewAll = document.querySelector('#view-all');
-viewAll.addEventListener('click', handleViewAllClick);
+viewAll.addEventListener('click', DOMHandlers.handleViewAllClick);
 
 renderTasks(storage.getTasks());
 renderProjects(storage.getProjects());
