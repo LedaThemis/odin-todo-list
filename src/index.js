@@ -215,6 +215,7 @@ const getTaskHTML = (task, id) => {
   deleteTaskButton.alt = 'delete task';
   deleteTaskButton.id = `task-delete-${id}`;
   deleteTaskButton.classList.add('task-delete');
+  deleteTaskButton.addEventListener('click', (e) => handleTaskDelete(e, id));
 
   taskButtonsDiv.appendChild(editTaskButton);
   taskButtonsDiv.appendChild(deleteTaskButton);
@@ -233,11 +234,15 @@ const handleTaskCheckboxClick = (e, taskId) => {
   }
 };
 
+const handleTaskDelete = (e, taskId) => {
+  storage.removeTask(taskId);
+  renderTasks(storage.getTasks());
+};
+
 const renderTasks = (tasks) => {
   const main = document.querySelector('#main');
   main.replaceChildren();
   tasks.forEach((task, id) => {
-    console.log(task);
     const taskHTML = getTaskHTML(task, id);
     main.appendChild(taskHTML);
   });
