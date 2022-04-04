@@ -1,228 +1,685 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
-/******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./node_modules/css-loader/dist/cjs.js!./src/styles.css":
-/*!**************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./src/styles.css ***!
-  \**************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \":root {\\n  --main-bg-color: #041c32;\\n  --secondary-bg-color: #04293a;\\n  --third-bg-color: #064663;\\n  --fourth-bg-color: #ecb365;\\n\\n  --high-priority-color: red;\\n  --medium-priority-color: yellow;\\n  --low-priority-color: green;\\n\\n  --main-text-color: #ffffff;\\n\\n  --title-font-family: Raleway, sans-serif;\\n  --sidebar-font-family: Poppins, sans-serif;\\n  --task-font-family: var(--title-font-family);\\n}\\n\\nbody {\\n  margin: 0;\\n  height: 100vh;\\n  display: grid;\\n  grid-template-columns: 0.3fr 0.7fr;\\n  grid-template-rows: 0.2fr 0.8fr;\\n  grid-template-areas:\\n    'TITLE TITLE'\\n    'SIDEBAR MAIN';\\n}\\n\\n#header {\\n  grid-area: TITLE;\\n\\n  background-color: var(--main-bg-color);\\n  color: var(--main-text-color);\\n\\n  text-align: center;\\n  font-family: var(--title-font-family);\\n}\\n\\n#sidebar {\\n  grid-area: SIDEBAR;\\n\\n  background-color: var(--secondary-bg-color);\\n  color: var(--main-text-color);\\n  font-family: var(--sidebar-font-family);\\n  font-size: 1.25rem;\\n\\n  height: 100vh;\\n}\\n\\n#nav {\\n  display: flex;\\n  flex-direction: column;\\n  gap: 1rem;\\n\\n  padding: 1rem;\\n}\\n\\n#nav > ul,\\n#nav > ul > li > ul {\\n  padding: 0;\\n  list-style-type: none;\\n  margin: 0;\\n}\\n\\n#nav li {\\n  padding-left: 1rem;\\n}\\n\\n#add-project {\\n  width: 100%;\\n  height: 2rem;\\n\\n  background-color: transparent;\\n  border: 2px solid white;\\n\\n  cursor: pointer;\\n\\n  color: var(--main-text-color);\\n  font-size: 2rem;\\n\\n  display: grid;\\n  justify-content: center;\\n  align-content: center;\\n\\n  margin: 1rem 0;\\n}\\n\\n#add-project:hover {\\n  background-color: white;\\n  color: var(--secondary-bg-color);\\n}\\n\\n#main {\\n  grid-area: MAIN;\\n  padding: 1rem;\\n}\\n\\n.task,\\n.task-info,\\n.task-buttons {\\n  display: flex;\\n  align-items: center;\\n}\\n\\n.task {\\n  justify-content: space-between;\\n}\\n\\n.task-info {\\n  gap: 0.5rem;\\n\\n  font-family: var(--task-font-family);\\n}\\n\\n.task-buttons > img {\\n  cursor: pointer;\\n}\\n\\n.right-task-div {\\n  display: flex;\\n  gap: 2rem;\\n}\\n\\n#add-task {\\n  border: none;\\n  cursor: pointer;\\n\\n  position: fixed;\\n  width: 60px;\\n  height: 60px;\\n  bottom: 40px;\\n  right: 40px;\\n\\n  background-color: var(--secondary-bg-color);\\n  color: var(--main-text-color);\\n\\n  border-radius: 50px;\\n  box-shadow: 2px 2px 3px #999;\\n\\n  display: grid;\\n  place-items: center;\\n\\n  text-decoration: none;\\n}\\n\\n.task-form-divs {\\n  position: fixed;\\n  width: 100vw;\\n  height: 100vh;\\n\\n  display: grid;\\n  align-items: center;\\n  justify-content: center;\\n\\n  background-color: rgba(0, 0, 0, 0.2);\\n}\\n\\n.task-forms {\\n  display: flex;\\n  flex-direction: column;\\n  align-items: center;\\n\\n  font-family: var(--title-font-family);\\n  font-size: 2rem;\\n\\n  background-color: var(--third-bg-color);\\n  color: var(--main-text-color);\\n\\n  padding: 1rem;\\n  border-radius: 1rem;\\n}\\n\\n.form-buttons,\\n.remove-project-buttons {\\n  border: none;\\n  background-color: var(--secondary-bg-color);\\n  color: var(--main-text-color);\\n  font-family: var(--task-font-family);\\n  font-weight: bold;\\n\\n  cursor: pointer;\\n}\\n.submit-form-buttons {\\n  width: 10rem;\\n  height: 2rem;\\n}\\n\\n.close-form-button {\\n  align-self: flex-end;\\n  width: 2rem;\\n  height: 2rem;\\n}\\n\\n#fill-all-required-fields,\\n#fill-project-name,\\n#fill-all-edit-values {\\n  font-size: 1rem;\\n  font-weight: bold;\\n}\\n\\n#add-project-form > fieldset {\\n  display: flex;\\n  align-items: center;\\n}\\n#project-name {\\n  width: 100%;\\n}\\n\\n.project-title {\\n  margin: 0;\\n}\\n\\n.project-names {\\n  display: flex;\\n  justify-content: space-between;\\n  align-items: center;\\n\\n  cursor: pointer;\\n}\\n\\n.selected-project,\\n.selected-status {\\n  color: var(--fourth-bg-color);\\n}\\n\\n.status-choice {\\n  cursor: pointer;\\n}\\n\\n#view-all {\\n  cursor: pointer;\\n}\\n\\n.high-priority-task {\\n  border-left: 2px solid var(--high-priority-color);\\n}\\n.medium-priority-task {\\n  border-left: 2px solid var(--medium-priority-color);\\n}\\n.low-priority-task {\\n  border-left: 2px solid var(--low-priority-color);\\n}\\n\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://odin-todo-list/./src/styles.css?./node_modules/css-loader/dist/cjs.js");
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/api.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
-  \*****************************************************/
-/***/ ((module) => {
-
-"use strict";
-eval("\n\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n*/\nmodule.exports = function (cssWithMappingToString) {\n  var list = []; // return the list of modules as css string\n\n  list.toString = function toString() {\n    return this.map(function (item) {\n      var content = \"\";\n      var needLayer = typeof item[5] !== \"undefined\";\n\n      if (item[4]) {\n        content += \"@supports (\".concat(item[4], \") {\");\n      }\n\n      if (item[2]) {\n        content += \"@media \".concat(item[2], \" {\");\n      }\n\n      if (needLayer) {\n        content += \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\");\n      }\n\n      content += cssWithMappingToString(item);\n\n      if (needLayer) {\n        content += \"}\";\n      }\n\n      if (item[2]) {\n        content += \"}\";\n      }\n\n      if (item[4]) {\n        content += \"}\";\n      }\n\n      return content;\n    }).join(\"\");\n  }; // import a list of modules into the list\n\n\n  list.i = function i(modules, media, dedupe, supports, layer) {\n    if (typeof modules === \"string\") {\n      modules = [[null, modules, undefined]];\n    }\n\n    var alreadyImportedModules = {};\n\n    if (dedupe) {\n      for (var k = 0; k < this.length; k++) {\n        var id = this[k][0];\n\n        if (id != null) {\n          alreadyImportedModules[id] = true;\n        }\n      }\n    }\n\n    for (var _k = 0; _k < modules.length; _k++) {\n      var item = [].concat(modules[_k]);\n\n      if (dedupe && alreadyImportedModules[item[0]]) {\n        continue;\n      }\n\n      if (typeof layer !== \"undefined\") {\n        if (typeof item[5] === \"undefined\") {\n          item[5] = layer;\n        } else {\n          item[1] = \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\").concat(item[1], \"}\");\n          item[5] = layer;\n        }\n      }\n\n      if (media) {\n        if (!item[2]) {\n          item[2] = media;\n        } else {\n          item[1] = \"@media \".concat(item[2], \" {\").concat(item[1], \"}\");\n          item[2] = media;\n        }\n      }\n\n      if (supports) {\n        if (!item[4]) {\n          item[4] = \"\".concat(supports);\n        } else {\n          item[1] = \"@supports (\".concat(item[4], \") {\").concat(item[1], \"}\");\n          item[4] = supports;\n        }\n      }\n\n      list.push(item);\n    }\n  };\n\n  return list;\n};\n\n//# sourceURL=webpack://odin-todo-list/./node_modules/css-loader/dist/runtime/api.js?");
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/noSourceMaps.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/noSourceMaps.js ***!
-  \**************************************************************/
-/***/ ((module) => {
-
-"use strict";
-eval("\n\nmodule.exports = function (i) {\n  return i[1];\n};\n\n//# sourceURL=webpack://odin-todo-list/./node_modules/css-loader/dist/runtime/noSourceMaps.js?");
-
-/***/ }),
-
-/***/ "./src/styles.css":
-/*!************************!*\
-  !*** ./src/styles.css ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleDomAPI.js */ \"./node_modules/style-loader/dist/runtime/styleDomAPI.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertBySelector.js */ \"./node_modules/style-loader/dist/runtime/insertBySelector.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ \"./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertStyleElement.js */ \"./node_modules/style-loader/dist/runtime/insertStyleElement.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleTagTransform.js */ \"./node_modules/style-loader/dist/runtime/styleTagTransform.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var _node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!./styles.css */ \"./node_modules/css-loader/dist/cjs.js!./src/styles.css\");\n\n      \n      \n      \n      \n      \n      \n      \n      \n      \n\nvar options = {};\n\noptions.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());\noptions.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());\n\n      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, \"head\");\n    \noptions.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());\noptions.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());\n\nvar update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__[\"default\"], options);\n\n\n\n\n       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__[\"default\"] && _node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__[\"default\"].locals ? _node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__[\"default\"].locals : undefined);\n\n\n//# sourceURL=webpack://odin-todo-list/./src/styles.css?");
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
-  \****************************************************************************/
-/***/ ((module) => {
-
-"use strict";
-eval("\n\nvar stylesInDOM = [];\n\nfunction getIndexByIdentifier(identifier) {\n  var result = -1;\n\n  for (var i = 0; i < stylesInDOM.length; i++) {\n    if (stylesInDOM[i].identifier === identifier) {\n      result = i;\n      break;\n    }\n  }\n\n  return result;\n}\n\nfunction modulesToDom(list, options) {\n  var idCountMap = {};\n  var identifiers = [];\n\n  for (var i = 0; i < list.length; i++) {\n    var item = list[i];\n    var id = options.base ? item[0] + options.base : item[0];\n    var count = idCountMap[id] || 0;\n    var identifier = \"\".concat(id, \" \").concat(count);\n    idCountMap[id] = count + 1;\n    var indexByIdentifier = getIndexByIdentifier(identifier);\n    var obj = {\n      css: item[1],\n      media: item[2],\n      sourceMap: item[3],\n      supports: item[4],\n      layer: item[5]\n    };\n\n    if (indexByIdentifier !== -1) {\n      stylesInDOM[indexByIdentifier].references++;\n      stylesInDOM[indexByIdentifier].updater(obj);\n    } else {\n      var updater = addElementStyle(obj, options);\n      options.byIndex = i;\n      stylesInDOM.splice(i, 0, {\n        identifier: identifier,\n        updater: updater,\n        references: 1\n      });\n    }\n\n    identifiers.push(identifier);\n  }\n\n  return identifiers;\n}\n\nfunction addElementStyle(obj, options) {\n  var api = options.domAPI(options);\n  api.update(obj);\n\n  var updater = function updater(newObj) {\n    if (newObj) {\n      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {\n        return;\n      }\n\n      api.update(obj = newObj);\n    } else {\n      api.remove();\n    }\n  };\n\n  return updater;\n}\n\nmodule.exports = function (list, options) {\n  options = options || {};\n  list = list || [];\n  var lastIdentifiers = modulesToDom(list, options);\n  return function update(newList) {\n    newList = newList || [];\n\n    for (var i = 0; i < lastIdentifiers.length; i++) {\n      var identifier = lastIdentifiers[i];\n      var index = getIndexByIdentifier(identifier);\n      stylesInDOM[index].references--;\n    }\n\n    var newLastIdentifiers = modulesToDom(newList, options);\n\n    for (var _i = 0; _i < lastIdentifiers.length; _i++) {\n      var _identifier = lastIdentifiers[_i];\n\n      var _index = getIndexByIdentifier(_identifier);\n\n      if (stylesInDOM[_index].references === 0) {\n        stylesInDOM[_index].updater();\n\n        stylesInDOM.splice(_index, 1);\n      }\n    }\n\n    lastIdentifiers = newLastIdentifiers;\n  };\n};\n\n//# sourceURL=webpack://odin-todo-list/./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js?");
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/insertBySelector.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/insertBySelector.js ***!
-  \********************************************************************/
-/***/ ((module) => {
-
-"use strict";
-eval("\n\nvar memo = {};\n/* istanbul ignore next  */\n\nfunction getTarget(target) {\n  if (typeof memo[target] === \"undefined\") {\n    var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself\n\n    if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {\n      try {\n        // This will throw an exception if access to iframe is blocked\n        // due to cross-origin restrictions\n        styleTarget = styleTarget.contentDocument.head;\n      } catch (e) {\n        // istanbul ignore next\n        styleTarget = null;\n      }\n    }\n\n    memo[target] = styleTarget;\n  }\n\n  return memo[target];\n}\n/* istanbul ignore next  */\n\n\nfunction insertBySelector(insert, style) {\n  var target = getTarget(insert);\n\n  if (!target) {\n    throw new Error(\"Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.\");\n  }\n\n  target.appendChild(style);\n}\n\nmodule.exports = insertBySelector;\n\n//# sourceURL=webpack://odin-todo-list/./node_modules/style-loader/dist/runtime/insertBySelector.js?");
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/insertStyleElement.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/insertStyleElement.js ***!
-  \**********************************************************************/
-/***/ ((module) => {
-
-"use strict";
-eval("\n\n/* istanbul ignore next  */\nfunction insertStyleElement(options) {\n  var element = document.createElement(\"style\");\n  options.setAttributes(element, options.attributes);\n  options.insert(element, options.options);\n  return element;\n}\n\nmodule.exports = insertStyleElement;\n\n//# sourceURL=webpack://odin-todo-list/./node_modules/style-loader/dist/runtime/insertStyleElement.js?");
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js":
-/*!**********************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js ***!
-  \**********************************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-eval("\n\n/* istanbul ignore next  */\nfunction setAttributesWithoutAttributes(styleElement) {\n  var nonce =  true ? __webpack_require__.nc : 0;\n\n  if (nonce) {\n    styleElement.setAttribute(\"nonce\", nonce);\n  }\n}\n\nmodule.exports = setAttributesWithoutAttributes;\n\n//# sourceURL=webpack://odin-todo-list/./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js?");
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/styleDomAPI.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/styleDomAPI.js ***!
-  \***************************************************************/
-/***/ ((module) => {
-
-"use strict";
-eval("\n\n/* istanbul ignore next  */\nfunction apply(styleElement, options, obj) {\n  var css = \"\";\n\n  if (obj.supports) {\n    css += \"@supports (\".concat(obj.supports, \") {\");\n  }\n\n  if (obj.media) {\n    css += \"@media \".concat(obj.media, \" {\");\n  }\n\n  var needLayer = typeof obj.layer !== \"undefined\";\n\n  if (needLayer) {\n    css += \"@layer\".concat(obj.layer.length > 0 ? \" \".concat(obj.layer) : \"\", \" {\");\n  }\n\n  css += obj.css;\n\n  if (needLayer) {\n    css += \"}\";\n  }\n\n  if (obj.media) {\n    css += \"}\";\n  }\n\n  if (obj.supports) {\n    css += \"}\";\n  }\n\n  var sourceMap = obj.sourceMap;\n\n  if (sourceMap && typeof btoa !== \"undefined\") {\n    css += \"\\n/*# sourceMappingURL=data:application/json;base64,\".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), \" */\");\n  } // For old IE\n\n  /* istanbul ignore if  */\n\n\n  options.styleTagTransform(css, styleElement, options.options);\n}\n\nfunction removeStyleElement(styleElement) {\n  // istanbul ignore if\n  if (styleElement.parentNode === null) {\n    return false;\n  }\n\n  styleElement.parentNode.removeChild(styleElement);\n}\n/* istanbul ignore next  */\n\n\nfunction domAPI(options) {\n  var styleElement = options.insertStyleElement(options);\n  return {\n    update: function update(obj) {\n      apply(styleElement, options, obj);\n    },\n    remove: function remove() {\n      removeStyleElement(styleElement);\n    }\n  };\n}\n\nmodule.exports = domAPI;\n\n//# sourceURL=webpack://odin-todo-list/./node_modules/style-loader/dist/runtime/styleDomAPI.js?");
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/styleTagTransform.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/styleTagTransform.js ***!
-  \*********************************************************************/
-/***/ ((module) => {
-
-"use strict";
-eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElement) {\n  if (styleElement.styleSheet) {\n    styleElement.styleSheet.cssText = css;\n  } else {\n    while (styleElement.firstChild) {\n      styleElement.removeChild(styleElement.firstChild);\n    }\n\n    styleElement.appendChild(document.createTextNode(css));\n  }\n}\n\nmodule.exports = styleTagTransform;\n\n//# sourceURL=webpack://odin-todo-list/./node_modules/style-loader/dist/runtime/styleTagTransform.js?");
-
-/***/ }),
-
-/***/ "./src/clear_icon.svg":
-/*!****************************!*\
-  !*** ./src/clear_icon.svg ***!
-  \****************************/
-/***/ ((module) => {
-
-eval("module.exports = \"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='%23000000'%3e%3cpath d='M0 0h24v24H0V0z' fill='none'/%3e%3cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z'/%3e%3c/svg%3e\"\n\n//# sourceURL=webpack://odin-todo-list/./src/clear_icon.svg?");
-
-/***/ }),
-
-/***/ "./src/edit_icon.svg":
-/*!***************************!*\
-  !*** ./src/edit_icon.svg ***!
-  \***************************/
-/***/ ((module) => {
-
-eval("module.exports = \"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='%23000000'%3e%3cpath d='M0 0h24v24H0V0z' fill='none'/%3e%3cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM21.41 6.34l-3.75-3.75-2.53 2.54 3.75 3.75 2.53-2.54z'/%3e%3c/svg%3e\"\n\n//# sourceURL=webpack://odin-todo-list/./src/edit_icon.svg?");
-
-/***/ }),
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n/* harmony import */ var _edit_icon_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit_icon.svg */ \"./src/edit_icon.svg\");\n/* harmony import */ var _edit_icon_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_edit_icon_svg__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _clear_icon_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./clear_icon.svg */ \"./src/clear_icon.svg\");\n/* harmony import */ var _clear_icon_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_clear_icon_svg__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\nlet SELECTED_STATUS = 0;\nlet SELECTED_PROJECT_ID = -1;\n\nconst convertTaskForLocalStorage = (task) => {\n  const taskName = task.getTitle();\n  const taskDueDate = task.getDueDate();\n  const taskPriority = task.getPriority();\n  const taskIsDone = task.getIsDone();\n\n  return { taskName, taskDueDate, taskPriority, taskIsDone };\n};\n\nconst convertTaskForUse = ({\n  taskName,\n  taskDueDate,\n  taskPriority,\n  taskIsDone,\n}) => {\n  const task = createTask(taskName, taskDueDate, taskPriority);\n  if (taskIsDone) {\n    task.setDone();\n  }\n  return task;\n};\n\nconst createTask = (title, dueDate, priority) => {\n  let isDone = false;\n  let _priority = priority;\n  let _title = title;\n  let _dueDate = dueDate;\n\n  const getTitle = () => _title;\n  const getDueDate = () => _dueDate;\n  const getIsDone = () => isDone;\n  const getPriority = () => _priority;\n\n  const setTitle = (newTitle) => {\n    _title = newTitle;\n  };\n\n  const setDueDate = (newDueDate) => {\n    _dueDate = newDueDate;\n  };\n\n  const setPriority = (newPriority) => {\n    _priority = newPriority;\n  };\n\n  const setDone = () => {\n    isDone = true;\n  };\n\n  const setDoing = () => {\n    isDone = false;\n  };\n\n  return {\n    getTitle,\n    getDueDate,\n    getPriority,\n    getIsDone,\n    setTitle,\n    setDueDate,\n    setPriority,\n    setDone,\n    setDoing,\n  };\n};\n\nconst storage = (() => {\n  let projects;\n  if (localStorage.getItem('projects') === null) {\n    projects = ['default'];\n  } else {\n    projects = JSON.parse(localStorage.getItem('projects'));\n  }\n\n  let tasks;\n  if (localStorage.getItem('tasks') === null) {\n    tasks = [];\n  } else {\n    const localStorageTasks = JSON.parse(localStorage.getItem('tasks'));\n\n    tasks = localStorageTasks.map((t) => {\n      const projectId = t.projectId;\n      const task = convertTaskForUse(t.task);\n\n      return { task, projectId };\n    });\n  }\n\n  const addProject = (name) => {\n    projects.push(name);\n  };\n  const removeProject = (id) => {\n    projects = projects.slice(0, id).concat(projects.slice(id + 1));\n    tasks = tasks.filter((task) => task.projectId !== id);\n  };\n\n  const getProjects = () => {\n    return projects;\n  };\n\n  const addTask = (task, projectId) => {\n    tasks.push({ task, projectId });\n  };\n\n  const removeTask = (id) => {\n    tasks = tasks.slice(0, id).concat(tasks.slice(id + 1));\n  };\n\n  const getTasks = () => {\n    return tasks;\n  };\n\n  const setTaskProjectId = (taskId, newProjectId) => {\n    tasks[taskId].projectId = newProjectId;\n  };\n\n  return {\n    addTask,\n    removeTask,\n    getTasks,\n    addProject,\n    removeProject,\n    getProjects,\n    setTaskProjectId,\n  };\n})();\n\nconst createOptionElement = (name, value) => {\n  const option = document.createElement('option');\n  option.innerText = name;\n  option.value = value;\n\n  return option;\n};\n\nconst getProjectsDropdownValues = (projects) => {\n  return projects.map((project, i) => createOptionElement(project, i));\n};\n\nconst showAddTaskForm = () => {\n  const addTaskFormDiv = document.querySelector('#add-task-div');\n  addTaskFormDiv.style.display = 'grid';\n};\n\nconst showAddProjectForm = () => {\n  const addProjectFormDiv = document.querySelector('#add-project-div');\n  addProjectFormDiv.style.display = 'grid';\n};\n\nconst showEditTaskForm = () => {\n  const addProjectFormDiv = document.querySelector('#edit-task-div');\n  addProjectFormDiv.style.display = 'grid';\n};\n\nconst hideAddTaskForm = () => {\n  const addTaskFormDiv = document.querySelector('#add-task-div');\n  addTaskFormDiv.style.display = 'none';\n};\n\nconst hideAddProjectForm = () => {\n  const addProjectFormDiv = document.querySelector('#add-project-div');\n  addProjectFormDiv.style.display = 'none';\n};\n\nconst hideEditTaskForm = () => {\n  const addProjectFormDiv = document.querySelector('#edit-task-div');\n  addProjectFormDiv.style.display = 'none';\n};\n\nfunction handleAddTask(e) {\n  const projectsDropdown = document.querySelector('#task-project');\n  const dropdownValues = getProjectsDropdownValues(storage.getProjects());\n\n  projectsDropdown.replaceChildren();\n\n  const emptyOption = createOptionElement('', '');\n  emptyOption.selected = true;\n  emptyOption.disabled = true;\n  projectsDropdown.appendChild(emptyOption);\n\n  dropdownValues.forEach((dropdownValue) =>\n    projectsDropdown.appendChild(dropdownValue)\n  );\n  showAddTaskForm();\n}\n\nfunction handleCloseForm(e) {\n  hideAddTaskForm();\n}\n\nfunction handleSubmitTask(e) {\n  e.preventDefault();\n  const form = document.querySelector('#add-task-form');\n  const formData = new FormData(form);\n  const title = formData.get('task-name');\n  const dueDate = formData.get('task-dueDate');\n  const priority = formData.get('task-priority');\n  const projectId = parseInt(formData.get('task-project'));\n\n  const p = document.querySelector('#fill-all-required-fields');\n  if (\n    title === '' ||\n    (dueDate === '') | (priority === null) ||\n    isNaN(projectId)\n  ) {\n    p.textContent = 'Please fill all the fields.';\n    return;\n  }\n  p.textContent = '';\n\n  const task = createTask(title, dueDate, priority);\n\n  storage.addTask(task, projectId);\n\n  form.reset();\n  hideAddTaskForm();\n\n  renderTasks(storage.getTasks());\n}\n\nfunction handleAddProject(e) {\n  showAddProjectForm();\n}\nconst handleProjectDelete = (e, projectId) => {\n  storage.removeProject(projectId);\n  renderProjects(storage.getProjects());\n  renderTasks(storage.getTasks());\n};\n\nconst handleCloseProjectForm = () => {\n  hideAddProjectForm();\n};\n\nfunction handleSubmitProject(e) {\n  e.preventDefault();\n  const form = document.querySelector('#add-project-form');\n  const formData = new FormData(form);\n  const name = formData.get('project-name');\n\n  const p = document.querySelector('#fill-project-name');\n  if (!name) {\n    p.textContent = 'Please provide a project name.';\n    return;\n  }\n  p.textContent = '';\n\n  storage.addProject(name);\n\n  form.reset();\n  hideAddProjectForm();\n\n  renderProjects(storage.getProjects());\n}\n\nconst handleProjectSelect = (e, id) => {\n  SELECTED_PROJECT_ID = id;\n  renderProjects(storage.getProjects());\n  renderTasks(storage.getTasks());\n};\n\nconst handleStatusClick = (e, id) => {\n  SELECTED_STATUS = id;\n  renderStatus();\n  renderTasks(storage.getTasks());\n};\n\nconst passFilter = (task, projectId) => {\n  const inProject = (projectId) => {\n    return SELECTED_PROJECT_ID === -1 || projectId === SELECTED_PROJECT_ID;\n  };\n  const inStatus = (isDone) => {\n    return (\n      (isDone && SELECTED_STATUS === 1) || (!isDone && SELECTED_STATUS === 0)\n    );\n  };\n  return inProject(projectId) && inStatus(task.task.getIsDone());\n};\n\nconst getTaskHTML = (task, id, isHidden) => {\n  const taskDiv = document.createElement('div');\n  taskDiv.classList.add('task');\n\n  if (isHidden) {\n    taskDiv.style.display = 'none';\n  }\n\n  let priorityClass;\n  switch (task.task.getPriority()) {\n    case 'high':\n      priorityClass = 'high-priority-task';\n      break;\n    case 'medium':\n      priorityClass = 'medium-priority-task';\n      break;\n    case 'low':\n      priorityClass = 'low-priority-task';\n      break;\n  }\n\n  taskDiv.classList.add(priorityClass);\n\n  const taskInfoDiv = document.createElement('div');\n  taskInfoDiv.classList.add('task-info');\n\n  const taskCheckbox = document.createElement('input');\n  taskCheckbox.type = 'checkbox';\n  taskCheckbox.name = `task-checkbox-${id}`;\n  taskCheckbox.id = `task-checkbox-${id}`;\n  taskCheckbox.checked = task.task.getIsDone();\n  taskCheckbox.classList.add('task-checkbox');\n  taskCheckbox.addEventListener('click', (e) => handleTaskCheckboxClick(e, id));\n\n  const taskTitle = document.createElement('p');\n  taskTitle.id = `task-title-${id}`;\n  taskTitle.classList.add('task-title');\n  taskTitle.innerText = task.task.getTitle();\n\n  taskInfoDiv.appendChild(taskCheckbox);\n  taskInfoDiv.appendChild(taskTitle);\n\n  const rightDiv = document.createElement('div');\n  rightDiv.classList.add('right-task-div');\n\n  const taskDueDate = document.createElement('p');\n  taskDueDate.innerText = task.task.getDueDate();\n\n  const taskButtonsDiv = document.createElement('div');\n  taskButtonsDiv.classList.add('task-buttons');\n\n  const editTaskButton = document.createElement('img');\n  editTaskButton.src = (_edit_icon_svg__WEBPACK_IMPORTED_MODULE_1___default());\n  editTaskButton.alt = 'edit task';\n  editTaskButton.id = `task-edit-${id}`;\n  editTaskButton.classList.add('task-edit');\n  editTaskButton.addEventListener('click', (e) => handleTaskEdit(e, id));\n\n  const deleteTaskButton = document.createElement('img');\n  deleteTaskButton.src = (_clear_icon_svg__WEBPACK_IMPORTED_MODULE_2___default());\n  deleteTaskButton.alt = 'delete task';\n  deleteTaskButton.id = `task-delete-${id}`;\n  deleteTaskButton.classList.add('task-delete');\n  deleteTaskButton.addEventListener('click', (e) => handleTaskDelete(e, id));\n\n  taskButtonsDiv.appendChild(editTaskButton);\n  taskButtonsDiv.appendChild(deleteTaskButton);\n\n  rightDiv.appendChild(taskDueDate);\n  rightDiv.appendChild(taskButtonsDiv);\n\n  taskDiv.appendChild(taskInfoDiv);\n  taskDiv.appendChild(rightDiv);\n\n  return taskDiv;\n};\n\nconst getProjectHTML = (name, id) => {\n  const li = document.createElement('li');\n  li.classList.add('project-names');\n\n  if (id === SELECTED_PROJECT_ID) {\n    li.classList.add('selected-project');\n  }\n  if (SELECTED_PROJECT_ID === -1) {\n    const viewAll = document.querySelector('#view-all');\n    viewAll.classList.add('selected-project');\n  } else {\n    const viewAll = document.querySelector('#view-all');\n    viewAll.classList.remove('selected-project');\n  }\n\n  li.addEventListener('click', (e) => handleProjectSelect(e, id));\n\n  const p = document.createElement('p');\n  p.innerText = name;\n  p.classList.add('project-title');\n\n  li.appendChild(p);\n\n  if (id !== 0) {\n    const button = document.createElement('button');\n    button.classList.add('remove-project-buttons');\n    button.type = 'button';\n    button.dataset.key = id;\n    button.innerText = '✕';\n\n    button.addEventListener('click', (e) => handleProjectDelete(e, id));\n    li.appendChild(button);\n  }\n\n  return li;\n};\n\nconst getStatusHTML = (s, id) => {\n  const li = document.createElement('li');\n  li.innerText = s;\n  li.classList.add('status-choice');\n\n  li.addEventListener('click', (e) => handleStatusClick(e, id));\n  if (SELECTED_STATUS === id) {\n    li.classList.add('selected-status');\n  }\n\n  return li;\n};\n\nconst handleTaskCheckboxClick = (e, taskId) => {\n  if (e.target.checked) {\n    storage.getTasks()[taskId].task.setDone();\n  } else {\n    storage.getTasks()[taskId].task.setDoing();\n  }\n\n  renderTasks(storage.getTasks());\n};\n\nconst handleTaskDelete = (e, taskId) => {\n  storage.removeTask(taskId);\n  renderTasks(storage.getTasks());\n};\n\nconst handleTaskEdit = (e, taskId) => {\n  const projectsDropdown = document.querySelector('#edit-task-project');\n  const dropdownValues = getProjectsDropdownValues(storage.getProjects());\n\n  projectsDropdown.replaceChildren();\n\n  const emptyOption = createOptionElement('', '');\n  emptyOption.selected = true;\n  emptyOption.disabled = true;\n  projectsDropdown.appendChild(emptyOption);\n\n  dropdownValues.forEach((dropdownValue) =>\n    projectsDropdown.appendChild(dropdownValue)\n  );\n\n  const task = storage.getTasks()[taskId].task;\n\n  const editTaskNameInput = document.querySelector('#edit-task-name');\n  editTaskNameInput.value = task.getTitle();\n\n  const editTaskDueDateInput = document.querySelector('#edit-task-dueDate');\n  editTaskDueDateInput.value = task.getDueDate();\n\n  const editTaskPriorityInput = document.querySelector('#edit-task-priority');\n  editTaskPriorityInput.value = task.getPriority();\n\n  const editTaskProjectInput = document.querySelector('#edit-task-project');\n  editTaskProjectInput.value = storage.getTasks()[taskId].projectId;\n\n  const submitEditTaskButton = document.querySelector('#submit-edit-task');\n  submitEditTaskButton.dataset.key = taskId;\n\n  showEditTaskForm();\n};\n\nfunction handleSubmitEditTask(e) {\n  e.preventDefault();\n  const form = document.querySelector('#edit-task-form');\n  const formData = new FormData(form);\n  const title = formData.get('edit-task-name');\n  const dueDate = formData.get('edit-task-dueDate');\n  const priority = formData.get('edit-task-priority');\n  const projectId = parseInt(formData.get('edit-task-project'));\n\n  const taskId = parseInt(e.target.dataset.key);\n  const task = storage.getTasks()[taskId].task;\n\n  if (title !== '') {\n    task.setTitle(title);\n  }\n\n  if (dueDate !== '') {\n    task.setDueDate(dueDate);\n  }\n\n  if (priority !== null) {\n    task.setPriority(priority);\n  }\n\n  if (!isNaN(projectId)) {\n    storage.setTaskProjectId(taskId, projectId);\n  }\n\n  form.reset();\n  hideEditTaskForm();\n\n  renderTasks(storage.getTasks());\n}\n\nconst handleCloseEditTaskForm = (e) => {\n  hideEditTaskForm();\n};\n\nconst handleViewAllClick = (e) => {\n  SELECTED_PROJECT_ID = -1;\n  renderProjects(storage.getProjects());\n  renderTasks(storage.getTasks());\n};\n\nconst renderTasks = (tasks) => {\n  const main = document.querySelector('#main');\n  main.replaceChildren();\n\n  tasks.forEach((task, id) => {\n    const taskHTML = getTaskHTML(task, id, !passFilter(task, task.projectId));\n    main.appendChild(taskHTML);\n  });\n\n  // localStorage\n  tasks = storage.getTasks();\n  const saveableTasks = tasks.map((t) => {\n    const task = convertTaskForLocalStorage(t.task);\n    const projectId = t.projectId;\n    return { task, projectId };\n  });\n\n  localStorage.setItem('tasks', JSON.stringify(saveableTasks));\n};\n\nconst renderProjects = (projects) => {\n  const projectsUl = document.querySelector('#projects-list');\n  projectsUl.replaceChildren();\n  projects.forEach((project, id) => {\n    const projectHTML = getProjectHTML(project, id);\n    projectsUl.appendChild(projectHTML);\n  });\n\n  localStorage.setItem('projects', JSON.stringify(projects));\n};\n\nconst renderStatus = () => {\n  const status = ['Doing', 'Done'];\n  const statusList = document.querySelector('#status-list');\n  statusList.replaceChildren();\n\n  status.forEach((s, i) => {\n    const liHTML = getStatusHTML(s, i);\n    statusList.appendChild(liHTML);\n  });\n};\n\nconst addTaskButton = document.querySelector('#add-task');\naddTaskButton.addEventListener('click', handleAddTask);\n\nconst addProjectButton = document.querySelector('#add-project');\naddProjectButton.addEventListener('click', handleAddProject);\n\nconst closeFormButton = document.querySelector('#close-task-form');\ncloseFormButton.addEventListener('click', handleCloseForm);\n\nconst closeProjectForm = document.querySelector('#close-project-form');\ncloseProjectForm.addEventListener('click', handleCloseProjectForm);\n\nconst closeEditTaskForm = document.querySelector('#close-task-edit-form');\ncloseEditTaskForm.addEventListener('click', handleCloseEditTaskForm);\n\nconst submitTaskButton = document.querySelector('#submit-task');\nsubmitTaskButton.addEventListener('click', handleSubmitTask);\n\nconst submitProjectButton = document.querySelector('#submit-project');\nsubmitProjectButton.addEventListener('click', handleSubmitProject);\n\nconst submitEditTaskButton = document.querySelector('#submit-edit-task');\nsubmitEditTaskButton.addEventListener('click', handleSubmitEditTask);\n\nconst viewAll = document.querySelector('#view-all');\nviewAll.addEventListener('click', handleViewAllClick);\n\nrenderTasks(storage.getTasks());\nrenderProjects(storage.getProjects());\nrenderStatus();\n\n\n//# sourceURL=webpack://odin-todo-list/./src/index.js?");
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
-/******/ 	
-/******/ })()
-;
+(() => {
+  var e = {
+      28: (e, t, n) => {
+        'use strict';
+        n.d(t, { Z: () => i });
+        var r = n(81),
+          o = n.n(r),
+          a = n(645),
+          s = n.n(a)()(o());
+        s.push([
+          e.id,
+          ":root {\n  --main-bg-color: #041c32;\n  --secondary-bg-color: #04293a;\n  --third-bg-color: #064663;\n  --fourth-bg-color: #ecb365;\n\n  --high-priority-color: red;\n  --medium-priority-color: yellow;\n  --low-priority-color: green;\n\n  --main-text-color: #ffffff;\n\n  --title-font-family: Raleway, sans-serif;\n  --sidebar-font-family: Poppins, sans-serif;\n  --task-font-family: var(--title-font-family);\n}\n\nbody {\n  margin: 0;\n  height: 100vh;\n  display: grid;\n  grid-template-columns: 0.3fr 0.7fr;\n  grid-template-rows: 0.2fr 0.8fr;\n  grid-template-areas:\n    'TITLE TITLE'\n    'SIDEBAR MAIN';\n}\n\n#header {\n  grid-area: TITLE;\n\n  background-color: var(--main-bg-color);\n  color: var(--main-text-color);\n\n  text-align: center;\n  font-family: var(--title-font-family);\n}\n\n#sidebar {\n  grid-area: SIDEBAR;\n\n  background-color: var(--secondary-bg-color);\n  color: var(--main-text-color);\n  font-family: var(--sidebar-font-family);\n  font-size: 1.25rem;\n\n  height: 100vh;\n}\n\n#nav {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n\n  padding: 1rem;\n}\n\n#nav > ul,\n#nav > ul > li > ul {\n  padding: 0;\n  list-style-type: none;\n  margin: 0;\n}\n\n#nav li {\n  padding-left: 1rem;\n}\n\n#add-project {\n  width: 100%;\n  height: 2rem;\n\n  background-color: transparent;\n  border: 2px solid white;\n\n  cursor: pointer;\n\n  color: var(--main-text-color);\n  font-size: 2rem;\n\n  display: grid;\n  justify-content: center;\n  align-content: center;\n\n  margin: 1rem 0;\n}\n\n#add-project:hover {\n  background-color: white;\n  color: var(--secondary-bg-color);\n}\n\n#main {\n  grid-area: MAIN;\n  padding: 1rem;\n}\n\n.task,\n.task-info,\n.task-buttons {\n  display: flex;\n  align-items: center;\n}\n\n.task {\n  justify-content: space-between;\n}\n\n.task-info {\n  gap: 0.5rem;\n\n  font-family: var(--task-font-family);\n}\n\n.task-buttons > img {\n  cursor: pointer;\n}\n\n.right-task-div {\n  display: flex;\n  gap: 2rem;\n}\n\n#add-task {\n  border: none;\n  cursor: pointer;\n\n  position: fixed;\n  width: 60px;\n  height: 60px;\n  bottom: 40px;\n  right: 40px;\n\n  background-color: var(--secondary-bg-color);\n  color: var(--main-text-color);\n\n  border-radius: 50px;\n  box-shadow: 2px 2px 3px #999;\n\n  display: grid;\n  place-items: center;\n\n  text-decoration: none;\n}\n\n.task-form-divs {\n  position: fixed;\n  width: 100vw;\n  height: 100vh;\n\n  display: grid;\n  align-items: center;\n  justify-content: center;\n\n  background-color: rgba(0, 0, 0, 0.2);\n}\n\n.task-forms {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n\n  font-family: var(--title-font-family);\n  font-size: 2rem;\n\n  background-color: var(--third-bg-color);\n  color: var(--main-text-color);\n\n  padding: 1rem;\n  border-radius: 1rem;\n}\n\n.form-buttons,\n.remove-project-buttons {\n  border: none;\n  background-color: var(--secondary-bg-color);\n  color: var(--main-text-color);\n  font-family: var(--task-font-family);\n  font-weight: bold;\n\n  cursor: pointer;\n}\n.submit-form-buttons {\n  width: 10rem;\n  height: 2rem;\n}\n\n.close-form-button {\n  align-self: flex-end;\n  width: 2rem;\n  height: 2rem;\n}\n\n#fill-all-required-fields,\n#fill-project-name,\n#fill-all-edit-values {\n  font-size: 1rem;\n  font-weight: bold;\n}\n\n#add-project-form > fieldset {\n  display: flex;\n  align-items: center;\n}\n#project-name {\n  width: 100%;\n}\n\n.project-title {\n  margin: 0;\n}\n\n.project-names {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n  cursor: pointer;\n}\n\n.selected-project,\n.selected-status {\n  color: var(--fourth-bg-color);\n}\n\n.status-choice {\n  cursor: pointer;\n}\n\n#view-all {\n  cursor: pointer;\n}\n\n.high-priority-task {\n  border-left: 2px solid var(--high-priority-color);\n}\n.medium-priority-task {\n  border-left: 2px solid var(--medium-priority-color);\n}\n.low-priority-task {\n  border-left: 2px solid var(--low-priority-color);\n}\n",
+          '',
+        ]);
+        const i = s;
+      },
+      645: (e) => {
+        'use strict';
+        e.exports = function (e) {
+          var t = [];
+          return (
+            (t.toString = function () {
+              return this.map(function (t) {
+                var n = '',
+                  r = void 0 !== t[5];
+                return (
+                  t[4] && (n += '@supports ('.concat(t[4], ') {')),
+                  t[2] && (n += '@media '.concat(t[2], ' {')),
+                  r &&
+                    (n += '@layer'.concat(
+                      t[5].length > 0 ? ' '.concat(t[5]) : '',
+                      ' {'
+                    )),
+                  (n += e(t)),
+                  r && (n += '}'),
+                  t[2] && (n += '}'),
+                  t[4] && (n += '}'),
+                  n
+                );
+              }).join('');
+            }),
+            (t.i = function (e, n, r, o, a) {
+              'string' == typeof e && (e = [[null, e, void 0]]);
+              var s = {};
+              if (r)
+                for (var i = 0; i < this.length; i++) {
+                  var c = this[i][0];
+                  null != c && (s[c] = !0);
+                }
+              for (var l = 0; l < e.length; l++) {
+                var d = [].concat(e[l]);
+                (r && s[d[0]]) ||
+                  (void 0 !== a &&
+                    (void 0 === d[5] ||
+                      (d[1] = '@layer'
+                        .concat(d[5].length > 0 ? ' '.concat(d[5]) : '', ' {')
+                        .concat(d[1], '}')),
+                    (d[5] = a)),
+                  n &&
+                    (d[2]
+                      ? ((d[1] = '@media '
+                          .concat(d[2], ' {')
+                          .concat(d[1], '}')),
+                        (d[2] = n))
+                      : (d[2] = n)),
+                  o &&
+                    (d[4]
+                      ? ((d[1] = '@supports ('
+                          .concat(d[4], ') {')
+                          .concat(d[1], '}')),
+                        (d[4] = o))
+                      : (d[4] = ''.concat(o))),
+                  t.push(d));
+              }
+            }),
+            t
+          );
+        };
+      },
+      81: (e) => {
+        'use strict';
+        e.exports = function (e) {
+          return e[1];
+        };
+      },
+      379: (e) => {
+        'use strict';
+        var t = [];
+        function n(e) {
+          for (var n = -1, r = 0; r < t.length; r++)
+            if (t[r].identifier === e) {
+              n = r;
+              break;
+            }
+          return n;
+        }
+        function r(e, r) {
+          for (var a = {}, s = [], i = 0; i < e.length; i++) {
+            var c = e[i],
+              l = r.base ? c[0] + r.base : c[0],
+              d = a[l] || 0,
+              u = ''.concat(l, ' ').concat(d);
+            a[l] = d + 1;
+            var p = n(u),
+              m = {
+                css: c[1],
+                media: c[2],
+                sourceMap: c[3],
+                supports: c[4],
+                layer: c[5],
+              };
+            if (-1 !== p) t[p].references++, t[p].updater(m);
+            else {
+              var f = o(m, r);
+              (r.byIndex = i),
+                t.splice(i, 0, { identifier: u, updater: f, references: 1 });
+            }
+            s.push(u);
+          }
+          return s;
+        }
+        function o(e, t) {
+          var n = t.domAPI(t);
+          return (
+            n.update(e),
+            function (t) {
+              if (t) {
+                if (
+                  t.css === e.css &&
+                  t.media === e.media &&
+                  t.sourceMap === e.sourceMap &&
+                  t.supports === e.supports &&
+                  t.layer === e.layer
+                )
+                  return;
+                n.update((e = t));
+              } else n.remove();
+            }
+          );
+        }
+        e.exports = function (e, o) {
+          var a = r((e = e || []), (o = o || {}));
+          return function (e) {
+            e = e || [];
+            for (var s = 0; s < a.length; s++) {
+              var i = n(a[s]);
+              t[i].references--;
+            }
+            for (var c = r(e, o), l = 0; l < a.length; l++) {
+              var d = n(a[l]);
+              0 === t[d].references && (t[d].updater(), t.splice(d, 1));
+            }
+            a = c;
+          };
+        };
+      },
+      569: (e) => {
+        'use strict';
+        var t = {};
+        e.exports = function (e, n) {
+          var r = (function (e) {
+            if (void 0 === t[e]) {
+              var n = document.querySelector(e);
+              if (
+                window.HTMLIFrameElement &&
+                n instanceof window.HTMLIFrameElement
+              )
+                try {
+                  n = n.contentDocument.head;
+                } catch (e) {
+                  n = null;
+                }
+              t[e] = n;
+            }
+            return t[e];
+          })(e);
+          if (!r)
+            throw new Error(
+              "Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid."
+            );
+          r.appendChild(n);
+        };
+      },
+      216: (e) => {
+        'use strict';
+        e.exports = function (e) {
+          var t = document.createElement('style');
+          return e.setAttributes(t, e.attributes), e.insert(t, e.options), t;
+        };
+      },
+      565: (e, t, n) => {
+        'use strict';
+        e.exports = function (e) {
+          var t = n.nc;
+          t && e.setAttribute('nonce', t);
+        };
+      },
+      795: (e) => {
+        'use strict';
+        e.exports = function (e) {
+          var t = e.insertStyleElement(e);
+          return {
+            update: function (n) {
+              !(function (e, t, n) {
+                var r = '';
+                n.supports && (r += '@supports ('.concat(n.supports, ') {')),
+                  n.media && (r += '@media '.concat(n.media, ' {'));
+                var o = void 0 !== n.layer;
+                o &&
+                  (r += '@layer'.concat(
+                    n.layer.length > 0 ? ' '.concat(n.layer) : '',
+                    ' {'
+                  )),
+                  (r += n.css),
+                  o && (r += '}'),
+                  n.media && (r += '}'),
+                  n.supports && (r += '}');
+                var a = n.sourceMap;
+                a &&
+                  'undefined' != typeof btoa &&
+                  (r +=
+                    '\n/*# sourceMappingURL=data:application/json;base64,'.concat(
+                      btoa(unescape(encodeURIComponent(JSON.stringify(a)))),
+                      ' */'
+                    )),
+                  t.styleTagTransform(r, e, t.options);
+              })(t, e, n);
+            },
+            remove: function () {
+              !(function (e) {
+                if (null === e.parentNode) return !1;
+                e.parentNode.removeChild(e);
+              })(t);
+            },
+          };
+        };
+      },
+      589: (e) => {
+        'use strict';
+        e.exports = function (e, t) {
+          if (t.styleSheet) t.styleSheet.cssText = e;
+          else {
+            for (; t.firstChild; ) t.removeChild(t.firstChild);
+            t.appendChild(document.createTextNode(e));
+          }
+        };
+      },
+      455: (e) => {
+        e.exports =
+          "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='%23000000'%3e%3cpath d='M0 0h24v24H0V0z' fill='none'/%3e%3cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z'/%3e%3c/svg%3e";
+      },
+      687: (e) => {
+        e.exports =
+          "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='%23000000'%3e%3cpath d='M0 0h24v24H0V0z' fill='none'/%3e%3cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM21.41 6.34l-3.75-3.75-2.53 2.54 3.75 3.75 2.53-2.54z'/%3e%3c/svg%3e";
+      },
+    },
+    t = {};
+  function n(r) {
+    var o = t[r];
+    if (void 0 !== o) return o.exports;
+    var a = (t[r] = { id: r, exports: {} });
+    return e[r](a, a.exports, n), a.exports;
+  }
+  (n.n = (e) => {
+    var t = e && e.__esModule ? () => e.default : () => e;
+    return n.d(t, { a: t }), t;
+  }),
+    (n.d = (e, t) => {
+      for (var r in t)
+        n.o(t, r) &&
+          !n.o(e, r) &&
+          Object.defineProperty(e, r, { enumerable: !0, get: t[r] });
+    }),
+    (n.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t)),
+    (() => {
+      'use strict';
+      var e = n(379),
+        t = n.n(e),
+        r = n(795),
+        o = n.n(r),
+        a = n(569),
+        s = n.n(a),
+        i = n(565),
+        c = n.n(i),
+        l = n(216),
+        d = n.n(l),
+        u = n(589),
+        p = n.n(u),
+        m = n(28),
+        f = {};
+      (f.styleTagTransform = p()),
+        (f.setAttributes = c()),
+        (f.insert = s().bind(null, 'head')),
+        (f.domAPI = o()),
+        (f.insertStyleElement = d()),
+        t()(m.Z, f),
+        m.Z && m.Z.locals && m.Z.locals;
+      var g = n(687),
+        v = n.n(g),
+        k = n(455),
+        y = n.n(k);
+      let h = 0,
+        b = -1;
+      const x = (e, t, n) => {
+          let r = !1,
+            o = n,
+            a = e,
+            s = t;
+          return {
+            getTitle: () => a,
+            getDueDate: () => s,
+            getPriority: () => o,
+            getIsDone: () => r,
+            setTitle: (e) => {
+              a = e;
+            },
+            setDueDate: (e) => {
+              s = e;
+            },
+            setPriority: (e) => {
+              o = e;
+            },
+            setDone: () => {
+              r = !0;
+            },
+            setDoing: () => {
+              r = !1;
+            },
+          };
+        },
+        j = (() => {
+          let e, t;
+          if (
+            ((e =
+              null === localStorage.getItem('projects')
+                ? ['default']
+                : JSON.parse(localStorage.getItem('projects'))),
+            null === localStorage.getItem('tasks'))
+          )
+            t = [];
+          else {
+            const e = JSON.parse(localStorage.getItem('tasks'));
+            t = e.map((e) => {
+              const t = e.projectId;
+              return {
+                task: (({
+                  taskName: e,
+                  taskDueDate: t,
+                  taskPriority: n,
+                  taskIsDone: r,
+                }) => {
+                  const o = x(e, t, n);
+                  return r && o.setDone(), o;
+                })(e.task),
+                projectId: t,
+              };
+            });
+          }
+          return {
+            addTask: (e, n) => {
+              t.push({ task: e, projectId: n });
+            },
+            removeTask: (e) => {
+              t = t.slice(0, e).concat(t.slice(e + 1));
+            },
+            getTasks: () => t,
+            addProject: (t) => {
+              e.push(t);
+            },
+            removeProject: (n) => {
+              (e = e.slice(0, n).concat(e.slice(n + 1))),
+                (t = t.filter((e) => e.projectId !== n));
+            },
+            getProjects: () => e,
+            setTaskProjectId: (e, n) => {
+              t[e].projectId = n;
+            },
+          };
+        })(),
+        S = (e, t) => {
+          const n = document.createElement('option');
+          return (n.innerText = e), (n.value = t), n;
+        },
+        w = (e) => e.map((e, t) => S(e, t)),
+        T = () => {
+          document.querySelector('#add-task-div').style.display = 'none';
+        },
+        E = () => {
+          document.querySelector('#add-project-div').style.display = 'none';
+        },
+        D = () => {
+          document.querySelector('#edit-task-div').style.display = 'none';
+        },
+        L = (e) => {
+          const t = document.querySelector('#main');
+          t.replaceChildren(),
+            e.forEach((e, n) => {
+              const r = ((e, t, n) => {
+                const r = document.createElement('div');
+                let o;
+                switch (
+                  (r.classList.add('task'),
+                  n && (r.style.display = 'none'),
+                  e.task.getPriority())
+                ) {
+                  case 'high':
+                    o = 'high-priority-task';
+                    break;
+                  case 'medium':
+                    o = 'medium-priority-task';
+                    break;
+                  case 'low':
+                    o = 'low-priority-task';
+                }
+                r.classList.add(o);
+                const a = document.createElement('div');
+                a.classList.add('task-info');
+                const s = document.createElement('input');
+                (s.type = 'checkbox'),
+                  (s.name = `task-checkbox-${t}`),
+                  (s.id = `task-checkbox-${t}`),
+                  (s.checked = e.task.getIsDone()),
+                  s.classList.add('task-checkbox'),
+                  s.addEventListener('click', (e) =>
+                    ((e, t) => {
+                      e.target.checked
+                        ? j.getTasks()[t].task.setDone()
+                        : j.getTasks()[t].task.setDoing(),
+                        L(j.getTasks());
+                    })(e, t)
+                  );
+                const i = document.createElement('p');
+                (i.id = `task-title-${t}`),
+                  i.classList.add('task-title'),
+                  (i.innerText = e.task.getTitle()),
+                  a.appendChild(s),
+                  a.appendChild(i);
+                const c = document.createElement('div');
+                c.classList.add('right-task-div');
+                const l = document.createElement('p');
+                l.innerText = e.task.getDueDate();
+                const d = document.createElement('div');
+                d.classList.add('task-buttons');
+                const u = document.createElement('img');
+                (u.src = v()),
+                  (u.alt = 'edit task'),
+                  (u.id = `task-edit-${t}`),
+                  u.classList.add('task-edit'),
+                  u.addEventListener('click', (e) =>
+                    ((e, t) => {
+                      const n = document.querySelector('#edit-task-project'),
+                        r = w(j.getProjects());
+                      n.replaceChildren();
+                      const o = S('', '');
+                      (o.selected = !0),
+                        (o.disabled = !0),
+                        n.appendChild(o),
+                        r.forEach((e) => n.appendChild(e));
+                      const a = j.getTasks()[t].task;
+                      (document.querySelector('#edit-task-name').value =
+                        a.getTitle()),
+                        (document.querySelector('#edit-task-dueDate').value =
+                          a.getDueDate()),
+                        (document.querySelector('#edit-task-priority').value =
+                          a.getPriority()),
+                        (document.querySelector('#edit-task-project').value =
+                          j.getTasks()[t].projectId),
+                        (document.querySelector(
+                          '#submit-edit-task'
+                        ).dataset.key = t),
+                        (document.querySelector(
+                          '#edit-task-div'
+                        ).style.display = 'grid');
+                    })(0, t)
+                  );
+                const p = document.createElement('img');
+                return (
+                  (p.src = y()),
+                  (p.alt = 'delete task'),
+                  (p.id = `task-delete-${t}`),
+                  p.classList.add('task-delete'),
+                  p.addEventListener('click', (e) => {
+                    return (n = t), j.removeTask(n), void L(j.getTasks());
+                    var n;
+                  }),
+                  d.appendChild(u),
+                  d.appendChild(p),
+                  c.appendChild(l),
+                  c.appendChild(d),
+                  r.appendChild(a),
+                  r.appendChild(c),
+                  r
+                );
+              })(
+                e,
+                n,
+                !((e, t) => {
+                  return (
+                    ((e) => -1 === b || e === b)(t) &&
+                    (((n = e.task.getIsDone()) && 1 === h) || (!n && 0 === h))
+                  );
+                  var n;
+                })(e, e.projectId)
+              );
+              t.appendChild(r);
+            });
+          const n = (e = j.getTasks()).map((e) => {
+            return {
+              task:
+                ((t = e.task),
+                {
+                  taskName: t.getTitle(),
+                  taskDueDate: t.getDueDate(),
+                  taskPriority: t.getPriority(),
+                  taskIsDone: t.getIsDone(),
+                }),
+              projectId: e.projectId,
+            };
+            var t;
+          });
+          localStorage.setItem('tasks', JSON.stringify(n));
+        },
+        I = (e) => {
+          const t = document.querySelector('#projects-list');
+          t.replaceChildren(),
+            e.forEach((e, n) => {
+              const r = ((e, t) => {
+                const n = document.createElement('li');
+                n.classList.add('project-names'),
+                  t === b && n.classList.add('selected-project'),
+                  -1 === b
+                    ? document
+                        .querySelector('#view-all')
+                        .classList.add('selected-project')
+                    : document
+                        .querySelector('#view-all')
+                        .classList.remove('selected-project'),
+                  n.addEventListener('click', (e) =>
+                    ((e, t) => {
+                      (b = t), I(j.getProjects()), L(j.getTasks());
+                    })(0, t)
+                  );
+                const r = document.createElement('p');
+                if (
+                  ((r.innerText = e),
+                  r.classList.add('project-title'),
+                  n.appendChild(r),
+                  0 !== t)
+                ) {
+                  const e = document.createElement('button');
+                  e.classList.add('remove-project-buttons'),
+                    (e.type = 'button'),
+                    (e.dataset.key = t),
+                    (e.innerText = '✕'),
+                    e.addEventListener('click', (e) => {
+                      return (
+                        (n = t),
+                        j.removeProject(n),
+                        I(j.getProjects()),
+                        void L(j.getTasks())
+                      );
+                      var n;
+                    }),
+                    n.appendChild(e);
+                }
+                return n;
+              })(e, n);
+              t.appendChild(r);
+            }),
+            localStorage.setItem('projects', JSON.stringify(e));
+        },
+        q = () => {
+          const e = document.querySelector('#status-list');
+          e.replaceChildren(),
+            ['Doing', 'Done'].forEach((t, n) => {
+              const r = ((e, t) => {
+                const n = document.createElement('li');
+                return (
+                  (n.innerText = e),
+                  n.classList.add('status-choice'),
+                  n.addEventListener('click', (e) =>
+                    ((e, t) => {
+                      (h = t), q(), L(j.getTasks());
+                    })(0, t)
+                  ),
+                  h === t && n.classList.add('selected-status'),
+                  n
+                );
+              })(t, n);
+              e.appendChild(r);
+            });
+        };
+      document
+        .querySelector('#add-task')
+        .addEventListener('click', function (e) {
+          const t = document.querySelector('#task-project'),
+            n = w(j.getProjects());
+          t.replaceChildren();
+          const r = S('', '');
+          (r.selected = !0),
+            (r.disabled = !0),
+            t.appendChild(r),
+            n.forEach((e) => t.appendChild(e)),
+            (document.querySelector('#add-task-div').style.display = 'grid');
+        }),
+        document
+          .querySelector('#add-project')
+          .addEventListener('click', function (e) {
+            document.querySelector('#add-project-div').style.display = 'grid';
+          }),
+        document
+          .querySelector('#close-task-form')
+          .addEventListener('click', function (e) {
+            T();
+          }),
+        document
+          .querySelector('#close-project-form')
+          .addEventListener('click', () => {
+            E();
+          }),
+        document
+          .querySelector('#close-task-edit-form')
+          .addEventListener('click', (e) => {
+            D();
+          }),
+        document
+          .querySelector('#submit-task')
+          .addEventListener('click', function (e) {
+            e.preventDefault();
+            const t = document.querySelector('#add-task-form'),
+              n = new FormData(t),
+              r = n.get('task-name'),
+              o = n.get('task-dueDate'),
+              a = n.get('task-priority'),
+              s = parseInt(n.get('task-project')),
+              i = document.querySelector('#fill-all-required-fields');
+            if ('' === r || ('' === o) | (null === a) || isNaN(s))
+              return void (i.textContent = 'Please fill all the fields.');
+            i.textContent = '';
+            const c = x(r, o, a);
+            j.addTask(c, s), t.reset(), T(), L(j.getTasks());
+          }),
+        document
+          .querySelector('#submit-project')
+          .addEventListener('click', function (e) {
+            e.preventDefault();
+            const t = document.querySelector('#add-project-form'),
+              n = new FormData(t).get('project-name'),
+              r = document.querySelector('#fill-project-name');
+            n
+              ? ((r.textContent = ''),
+                j.addProject(n),
+                t.reset(),
+                E(),
+                I(j.getProjects()))
+              : (r.textContent = 'Please provide a project name.');
+          }),
+        document
+          .querySelector('#submit-edit-task')
+          .addEventListener('click', function (e) {
+            e.preventDefault();
+            const t = document.querySelector('#edit-task-form'),
+              n = new FormData(t),
+              r = n.get('edit-task-name'),
+              o = n.get('edit-task-dueDate'),
+              a = n.get('edit-task-priority'),
+              s = parseInt(n.get('edit-task-project')),
+              i = parseInt(e.target.dataset.key),
+              c = j.getTasks()[i].task;
+            '' !== r && c.setTitle(r),
+              '' !== o && c.setDueDate(o),
+              null !== a && c.setPriority(a),
+              isNaN(s) || j.setTaskProjectId(i, s),
+              t.reset(),
+              D(),
+              L(j.getTasks());
+          }),
+        document.querySelector('#view-all').addEventListener('click', (e) => {
+          (b = -1), I(j.getProjects()), L(j.getTasks());
+        }),
+        L(j.getTasks()),
+        I(j.getProjects()),
+        q();
+    })();
+})();
