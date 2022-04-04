@@ -116,7 +116,7 @@ const DOMHandlers = (() => {
     form.reset();
     UI.hideAddTaskForm();
 
-    renderTasks(storage.getTasks());
+    render.tasks(storage.getTasks());
   };
 
   const handleSubmitProject = (e) => {
@@ -137,7 +137,7 @@ const DOMHandlers = (() => {
     form.reset();
     UI.hideAddProjectForm();
 
-    renderProjects(storage.getProjects());
+    render.projects(storage.getProjects());
   };
   const handleSubmitEditTask = (e) => {
     e.preventDefault();
@@ -170,24 +170,24 @@ const DOMHandlers = (() => {
     form.reset();
     UI.hideEditTaskForm();
 
-    renderTasks(storage.getTasks());
+    render.tasks(storage.getTasks());
   };
   const handleProjectDelete = (e, projectId) => {
     storage.removeProject(projectId);
-    renderProjects(storage.getProjects());
-    renderTasks(storage.getTasks());
+    render.projects(storage.getProjects());
+    render.tasks(storage.getTasks());
   };
 
   const handleProjectSelect = (e, id) => {
     SELECTED_PROJECT_ID = id;
-    renderProjects(storage.getProjects());
-    renderTasks(storage.getTasks());
+    render.projects(storage.getProjects());
+    render.tasks(storage.getTasks());
   };
 
   const handleStatusClick = (e, id) => {
     SELECTED_STATUS = id;
-    renderStatus();
-    renderTasks(storage.getTasks());
+    render.status();
+    render.tasks(storage.getTasks());
   };
 
   const handleTaskCheckboxClick = (e, taskId) => {
@@ -197,12 +197,12 @@ const DOMHandlers = (() => {
       storage.getTasks()[taskId].task.setDoing();
     }
 
-    renderTasks(storage.getTasks());
+    render.tasks(storage.getTasks());
   };
 
   const handleTaskDelete = (e, taskId) => {
     storage.removeTask(taskId);
-    renderTasks(storage.getTasks());
+    render.tasks(storage.getTasks());
   };
 
   const handleTaskEdit = (e, taskId) => {
@@ -244,8 +244,8 @@ const DOMHandlers = (() => {
 
   const handleViewAllClick = (e) => {
     SELECTED_PROJECT_ID = -1;
-    renderProjects(storage.getProjects());
-    renderTasks(storage.getTasks());
+    render.projects(storage.getProjects());
+    render.tasks(storage.getTasks());
   };
 
   return {
@@ -305,6 +305,56 @@ const UI = (() => {
     hideAddTaskForm,
     hideAddProjectForm,
     hideEditTaskForm,
+  };
+})();
+
+const render = (() => {
+  const tasks = (tasks) => {
+    const main = document.querySelector('#main');
+    main.replaceChildren();
+
+    tasks.forEach((task, id) => {
+      const taskHTML = getTaskHTML(task, id, !passFilter(task, task.projectId));
+      main.appendChild(taskHTML);
+    });
+
+    // localStorage
+    tasks = storage.getTasks();
+    const saveableTasks = tasks.map((t) => {
+      const task = helpers.convertTaskForLocalStorage(t.task);
+      const projectId = t.projectId;
+      return { task, projectId };
+    });
+
+    localStorage.setItem('tasks', JSON.stringify(saveableTasks));
+  };
+
+  const projects = (projects) => {
+    const projectsUl = document.querySelector('#projects-list');
+    projectsUl.replaceChildren();
+    projects.forEach((project, id) => {
+      const projectHTML = getProjectHTML(project, id);
+      projectsUl.appendChild(projectHTML);
+    });
+
+    localStorage.setItem('projects', JSON.stringify(projects));
+  };
+
+  const status = () => {
+    const status = ['Doing', 'Done'];
+    const statusList = document.querySelector('#status-list');
+    statusList.replaceChildren();
+
+    status.forEach((s, i) => {
+      const liHTML = getStatusHTML(s, i);
+      statusList.appendChild(liHTML);
+    });
+  };
+
+  return {
+    tasks,
+    projects,
+    status,
   };
 })();
 
@@ -552,48 +602,6 @@ const getStatusHTML = (s, id) => {
   return li;
 };
 
-const renderTasks = (tasks) => {
-  const main = document.querySelector('#main');
-  main.replaceChildren();
-
-  tasks.forEach((task, id) => {
-    const taskHTML = getTaskHTML(task, id, !passFilter(task, task.projectId));
-    main.appendChild(taskHTML);
-  });
-
-  // localStorage
-  tasks = storage.getTasks();
-  const saveableTasks = tasks.map((t) => {
-    const task = helpers.convertTaskForLocalStorage(t.task);
-    const projectId = t.projectId;
-    return { task, projectId };
-  });
-
-  localStorage.setItem('tasks', JSON.stringify(saveableTasks));
-};
-
-const renderProjects = (projects) => {
-  const projectsUl = document.querySelector('#projects-list');
-  projectsUl.replaceChildren();
-  projects.forEach((project, id) => {
-    const projectHTML = getProjectHTML(project, id);
-    projectsUl.appendChild(projectHTML);
-  });
-
-  localStorage.setItem('projects', JSON.stringify(projects));
-};
-
-const renderStatus = () => {
-  const status = ['Doing', 'Done'];
-  const statusList = document.querySelector('#status-list');
-  statusList.replaceChildren();
-
-  status.forEach((s, i) => {
-    const liHTML = getStatusHTML(s, i);
-    statusList.appendChild(liHTML);
-  });
-};
-
 const addTaskButton = document.querySelector('#add-task');
 addTaskButton.addEventListener('click', DOMHandlers.handleAddTask);
 
@@ -627,6 +635,6 @@ submitEditTaskButton.addEventListener(
 const viewAll = document.querySelector('#view-all');
 viewAll.addEventListener('click', DOMHandlers.handleViewAllClick);
 
-renderTasks(storage.getTasks());
-renderProjects(storage.getProjects());
-renderStatus();
+render.tasks(storage.getTasks());
+render.projects(storage.getProjects());
+render.status();
