@@ -271,9 +271,25 @@ const handleStatusClick = (e, id) => {
   renderTasks(storage.getTasks());
 };
 
-const getTaskHTML = (task, id) => {
+const passFilter = (task, projectId) => {
+  const inProject = (projectId) => {
+    return SELECTED_PROJECT_ID === -1 || projectId === SELECTED_PROJECT_ID;
+  };
+  const inStatus = (isDone) => {
+    return (
+      (isDone && SELECTED_STATUS === 1) || (!isDone && SELECTED_STATUS === 0)
+    );
+  };
+  return inProject(projectId) && inStatus(task.task.getIsDone());
+};
+
+const getTaskHTML = (task, id, isHidden) => {
   const taskDiv = document.createElement('div');
   taskDiv.classList.add('task');
+
+  if (isHidden) {
+    taskDiv.style.display = 'none';
+  }
 
   let priorityClass;
   switch (task.task.getPriority()) {
@@ -491,20 +507,9 @@ const handleViewAllClick = (e) => {
 const renderTasks = (tasks) => {
   const main = document.querySelector('#main');
   main.replaceChildren();
-  if (SELECTED_PROJECT_ID !== -1) {
-    tasks = tasks.filter((task) => task.projectId === SELECTED_PROJECT_ID);
-  }
-
-  tasks = tasks.filter((task) => {
-    if (task.task.getIsDone() && SELECTED_STATUS === 1) {
-      return task;
-    } else if (!task.task.getIsDone() && SELECTED_STATUS === 0) {
-      return task;
-    }
-  });
 
   tasks.forEach((task, id) => {
-    const taskHTML = getTaskHTML(task, id);
+    const taskHTML = getTaskHTML(task, id, !passFilter(task, task.projectId));
     main.appendChild(taskHTML);
   });
 
