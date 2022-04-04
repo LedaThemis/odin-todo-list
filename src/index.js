@@ -5,6 +5,25 @@ import clearIcon from './clear_icon.svg';
 const createTask = (title, dueDate, priority) => {
   let isDone = false;
   let _priority = priority;
+  let _title = title;
+  let _dueDate = dueDate;
+
+  const getTitle = () => _title;
+  const getDueDate = () => _dueDate;
+  const getIsDone = () => isDone;
+  const getPriority = () => _priority;
+
+  const setTitle = (newTitle) => {
+    _title = newTitle;
+  };
+
+  const setDueDate = (newDueDate) => {
+    _dueDate = newDueDate;
+  };
+
+  const setPriority = (newPriority) => {
+    _priority = newPriority;
+  };
 
   const setDone = () => {
     isDone = true;
@@ -14,26 +33,16 @@ const createTask = (title, dueDate, priority) => {
     isDone = false;
   };
 
-  const getIsDone = () => {
-    return isDone;
-  };
-
-  const setPriority = (newPriority) => {
-    _priority = newPriority;
-  };
-
-  const getPriority = () => {
-    return _priority;
-  };
-
   return {
-    title,
-    dueDate,
+    getTitle,
+    getDueDate,
+    getPriority,
+    getIsDone,
+    setTitle,
+    setDueDate,
+    setPriority,
     setDone,
     setDoing,
-    getIsDone,
-    getPriority,
-    setPriority,
   };
 };
 
@@ -196,7 +205,7 @@ const getTaskHTML = (task, id) => {
   const taskTitle = document.createElement('p');
   taskTitle.id = `task-title-${id}`;
   taskTitle.classList.add('task-title');
-  taskTitle.innerText = task.task.title;
+  taskTitle.innerText = task.task.getTitle();
 
   taskInfoDiv.appendChild(taskCheckbox);
   taskInfoDiv.appendChild(taskTitle);
@@ -209,6 +218,7 @@ const getTaskHTML = (task, id) => {
   editTaskButton.alt = 'edit task';
   editTaskButton.id = `task-edit-${id}`;
   editTaskButton.classList.add('task-edit');
+  editTaskButton.addEventListener('click', (e) => handleTaskEdit(e, id));
 
   const deleteTaskButton = document.createElement('img');
   deleteTaskButton.src = clearIcon;
@@ -238,6 +248,8 @@ const handleTaskDelete = (e, taskId) => {
   storage.removeTask(taskId);
   renderTasks(storage.getTasks());
 };
+
+const handleTaskEdit = (e, taskId) => {};
 
 const renderTasks = (tasks) => {
   const main = document.querySelector('#main');
