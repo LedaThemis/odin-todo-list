@@ -429,7 +429,7 @@ const getHTML = (() => {
     taskCheckbox.id = `task-checkbox-${id}`;
     taskCheckbox.checked = task.task.getIsDone();
     taskCheckbox.classList.add('task-checkbox');
-    taskCheckbox.addEventListener('click', (e) => handleTaskCheckboxClick(e, id));
+    taskCheckbox.addEventListener('click', (e) => DOMHandlers.handleTaskCheckboxClick(e, id));
 
     const taskTitle = document.createElement('p');
     taskTitle.id = `task-title-${id}`;
@@ -453,14 +453,14 @@ const getHTML = (() => {
     editTaskButton.alt = 'edit task';
     editTaskButton.id = `task-edit-${id}`;
     editTaskButton.classList.add('task-edit');
-    editTaskButton.addEventListener('click', (e) => handleTaskEdit(e, id));
+    editTaskButton.addEventListener('click', (e) => DOMHandlers.handleTaskEdit(e, id));
 
     const deleteTaskButton = document.createElement('img');
     deleteTaskButton.src = clearIcon;
     deleteTaskButton.alt = 'delete task';
     deleteTaskButton.id = `task-delete-${id}`;
     deleteTaskButton.classList.add('task-delete');
-    deleteTaskButton.addEventListener('click', (e) => handleTaskDelete(e, id));
+    deleteTaskButton.addEventListener('click', (e) => DOMHandlers.handleTaskDelete(e, id));
 
     taskButtonsDiv.appendChild(editTaskButton);
     taskButtonsDiv.appendChild(deleteTaskButton);
@@ -489,7 +489,7 @@ const getHTML = (() => {
       viewAll.classList.remove('selected-project');
     }
 
-    li.addEventListener('click', (e) => handleProjectSelect(e, id));
+    li.addEventListener('click', (e) => DOMHandlers.handleProjectSelect(e, id));
 
     const p = document.createElement('p');
     p.innerText = name;
@@ -504,7 +504,7 @@ const getHTML = (() => {
       button.dataset.key = id;
       button.innerText = '✕';
 
-      button.addEventListener('click', (e) => handleProjectDelete(e, id));
+      button.addEventListener('click', (e) => DOMHandlers.handleProjectDelete(e, id));
       li.appendChild(button);
     }
 
@@ -516,7 +516,7 @@ const getHTML = (() => {
     li.innerText = s;
     li.classList.add('status-choice');
 
-    li.addEventListener('click', (e) => handleStatusClick(e, id));
+    li.addEventListener('click', (e) => DOMHandlers.handleStatusClick(e, id));
     if (SELECTED_STATUS === id) {
       li.classList.add('selected-status');
     }
