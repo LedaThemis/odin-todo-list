@@ -1,6 +1,7 @@
 :root {
   --main-bg-color: #041c32;
   --secondary-bg-color: #04293a;
+  --third-bg-color: #064663;
 
   --main-text-color: #ffffff;
 
@@ -81,7 +82,7 @@ body {
   cursor: pointer;
 }
 
-.add-task {
+#add-task {
   border: none;
   cursor: pointer;
 
@@ -101,4 +102,55 @@ body {
   place-items: center;
 
   text-decoration: none;
+}
+
+#add-task-div {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+#add-task-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: var(--title-font-family);
+  font-size: 2rem;
+
+  background-color: var(--third-bg-color);
+  color: var(--main-text-color);
+
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+#submit-task,
+#close-form {
+  border: none;
+  background-color: var(--secondary-bg-color);
+  color: var(--main-text-color);
+  font-family: var(--task-font-family);
+  font-weight: bold;
+
+  cursor: pointer;
+}
+#submit-task {
+  width: 10rem;
+  height: 2rem;
+}
+
+#close-form {
+  align-self: flex-end;
+  width: 2rem;
+  height: 2rem;
+}
+
+#fill-all-required-fields {
+  font-size: 1rem;
+  font-weight: bold;
 }

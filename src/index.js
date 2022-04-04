@@ -71,3 +71,47 @@ const storage = (() => {
     getProjects,
   };
 })();
+
+const showAddTaskForm = () => {
+  const addTaskFormDiv = document.querySelector('#add-task-div');
+  addTaskFormDiv.style.display = 'grid';
+};
+
+const hideAddTaskForm = () => {
+  const addTaskFormDiv = document.querySelector('#add-task-div');
+  addTaskFormDiv.style.display = 'none';
+};
+
+function handleAddTask(e) {
+  showAddTaskForm();
+}
+
+function handleCloseForm(e) {
+  hideAddTaskForm();
+}
+
+function handleSubmitTask(e) {
+  const formData = new FormData(document.querySelector('#add-task-form'));
+  const title = formData.get('task-name');
+  const dueDate = formData.get('task-dueDate');
+  const priority = formData.get('task-priority');
+  const project = formData.get('task-project');
+
+  const p = document.querySelector('#fill-all-required-fields');
+  if (!title || !dueDate | !priority || !project) {
+    p.textContent = 'Please fill all the fields.';
+    return;
+  }
+  p.textContent = '';
+
+  const task = createTask(title, dueDate, priority, project);
+}
+
+const addTaskButton = document.querySelector('#add-task');
+addTaskButton.addEventListener('click', handleAddTask);
+
+const closeFormButton = document.querySelector('#close-form');
+closeFormButton.addEventListener('click', handleCloseForm);
+
+const submitTaskButton = document.querySelector('#submit-task');
+submitTaskButton.addEventListener('click', handleSubmitTask);
