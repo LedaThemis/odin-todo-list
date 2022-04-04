@@ -1,4 +1,6 @@
 import './styles.css';
+import editIcon from './edit_icon.svg';
+import clearIcon from './clear_icon.svg';
 
 const createTask = (title, dueDate, priority) => {
   let isDone = false;
@@ -175,6 +177,62 @@ function handleSubmitProject(e) {
   form.reset();
   hideAddProjectForm();
 }
+{
+  /* <div class="task">
+            <div class="task-info">
+                <input type="checkbox" name="task-1" id="task-1">
+                <p class="task-desc">Buy Apples</p>
+            </div>
+            <div class="task-buttons">
+                <img src="" alt="edit task" id="edit-task">
+                <img src="" alt="delete task" id="delete-task">
+            </div>
+        </div> */
+}
+
+const getTaskHTML = (task, id) => {
+  const taskDiv = document.createElement('div');
+
+  const taskInfoDiv = document.createElement('div');
+  taskInfoDiv.classList.add('task-info');
+
+  const taskCheckbox = document.createElement('input');
+  taskCheckbox.type = 'checkbox';
+  taskCheckbox.name = `task-checkbox-${id}`;
+  taskCheckbox.id = `task-checkbox-${id}`;
+  taskCheckbox.classList.add('task-checkbox');
+
+  const taskTitle = document.createElement('p');
+  taskTitle.id = `task-title-${id}`;
+  taskTitle.classList.add('task-title');
+  taskTitle.innerText = task.title;
+
+  taskInfoDiv.appendChild(taskCheckbox);
+  taskInfoDiv.appendChild(taskTitle);
+
+  const taskButtonsDiv = document.createElement('div');
+  taskButtonsDiv.classList.add('task-buttons');
+
+  const editTaskButton = document.createElement('img');
+  editTaskButton.src = editIcon;
+  editTaskButton.alt = 'edit task';
+  editTaskButton.id = `task-edit-${id}`;
+  editTaskButton.classList.add('task-edit');
+
+  const deleteTaskButton = document.createElement('img');
+  deleteTaskButton.src = clearIcon;
+  deleteTaskButton.alt = 'delete task';
+  deleteTaskButton.id = `task-delete-${id}`;
+  deleteTaskButton.classList.add('task-delete');
+
+  taskButtonsDiv.appendChild(editTaskButton);
+  taskButtonsDiv.appendChild(deleteTaskButton);
+
+  taskDiv.appendChild(taskInfoDiv);
+  taskDiv.appendChild(taskButtonsDiv);
+
+  return taskDiv;
+};
 
 const addTaskButton = document.querySelector('#add-task');
 addTaskButton.addEventListener('click', handleAddTask);
