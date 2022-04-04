@@ -5,27 +5,34 @@ import clearIcon from './clear_icon.svg';
 let SELECTED_STATUS = 0;
 let SELECTED_PROJECT_ID = -1;
 
-const convertTaskForLocalStorage = (task) => {
-  const taskName = task.getTitle();
-  const taskDueDate = task.getDueDate();
-  const taskPriority = task.getPriority();
-  const taskIsDone = task.getIsDone();
+const helpers = (() => {
+  const convertTaskForLocalStorage = (task) => {
+    const taskName = task.getTitle();
+    const taskDueDate = task.getDueDate();
+    const taskPriority = task.getPriority();
+    const taskIsDone = task.getIsDone();
 
-  return { taskName, taskDueDate, taskPriority, taskIsDone };
-};
+    return { taskName, taskDueDate, taskPriority, taskIsDone };
+  };
 
-const convertTaskForUse = ({
-  taskName,
-  taskDueDate,
-  taskPriority,
-  taskIsDone,
-}) => {
-  const task = createTask(taskName, taskDueDate, taskPriority);
-  if (taskIsDone) {
-    task.setDone();
-  }
-  return task;
-};
+  const convertTaskForUse = ({
+    taskName,
+    taskDueDate,
+    taskPriority,
+    taskIsDone,
+  }) => {
+    const task = createTask(taskName, taskDueDate, taskPriority);
+    if (taskIsDone) {
+      task.setDone();
+    }
+    return task;
+  };
+
+  return {
+    convertTaskForLocalStorage,
+    convertTaskForUse,
+  };
+})();
 
 const createTask = (title, dueDate, priority) => {
   let isDone = false;
@@ -87,7 +94,7 @@ const storage = (() => {
 
     tasks = localStorageTasks.map((t) => {
       const projectId = t.projectId;
-      const task = convertTaskForUse(t.task);
+      const task = helpers.convertTaskForUse(t.task);
 
       return { task, projectId };
     });
@@ -516,7 +523,7 @@ const renderTasks = (tasks) => {
   // localStorage
   tasks = storage.getTasks();
   const saveableTasks = tasks.map((t) => {
-    const task = convertTaskForLocalStorage(t.task);
+    const task = helpers.convertTaskForLocalStorage(t.task);
     const projectId = t.projectId;
     return { task, projectId };
   });
