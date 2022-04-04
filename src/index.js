@@ -152,6 +152,7 @@ function handleCloseForm(e) {
 }
 
 function handleSubmitTask(e) {
+  e.preventDefault();
   const form = document.querySelector('#add-task-form');
   const formData = new FormData(form);
   const title = formData.get('task-name');
@@ -185,6 +186,7 @@ const handleCloseProjectForm = () => {
 };
 
 function handleSubmitProject(e) {
+  e.preventDefault();
   const form = document.querySelector('#add-project-form');
   const formData = new FormData(form);
   const name = formData.get('project-name');
@@ -200,6 +202,8 @@ function handleSubmitProject(e) {
 
   form.reset();
   hideAddProjectForm();
+
+  renderProjects(storage.getProjects());
 }
 
 const getTaskHTML = (task, id) => {
@@ -251,6 +255,15 @@ const getTaskHTML = (task, id) => {
   return taskDiv;
 };
 
+const getProjectHTML = (name, id) => {
+  const li = document.createElement('li');
+  li.innerText = name;
+  li.dataset.key = id;
+  li.classList.add('project-names');
+
+  return li;
+};
+
 const handleTaskCheckboxClick = (e, taskId) => {
   if (e.target.checked) {
     storage.getTasks()[taskId].task.setDone();
@@ -300,6 +313,7 @@ const handleTaskEdit = (e, taskId) => {
 };
 
 function handleSubmitEditTask(e) {
+  e.preventDefault();
   const form = document.querySelector('#edit-task-form');
   const formData = new FormData(form);
   const title = formData.get('edit-task-name');
@@ -345,6 +359,15 @@ const renderTasks = (tasks) => {
   });
 };
 
+const renderProjects = (projects) => {
+  const projectsUl = document.querySelector('#projects-list');
+  projectsUl.replaceChildren();
+  projects.forEach((project, id) => {
+    const projectHTML = getProjectHTML(project, id);
+    projectsUl.appendChild(projectHTML);
+  });
+};
+
 const addTaskButton = document.querySelector('#add-task');
 addTaskButton.addEventListener('click', handleAddTask);
 
@@ -376,3 +399,4 @@ task.setDone();
 storage.addTask(task, 0);
 
 renderTasks(storage.getTasks());
+renderProjects(storage.getProjects());
