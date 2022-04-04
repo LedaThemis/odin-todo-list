@@ -149,7 +149,7 @@ function handleSubmitTask(e) {
   form.reset();
   hideAddTaskForm();
 
-  console.log(storage.getTasks());
+  renderTasks(storage.getTasks());
 }
 
 function handleAddProject(e) {
@@ -177,21 +177,10 @@ function handleSubmitProject(e) {
   form.reset();
   hideAddProjectForm();
 }
-{
-  /* <div class="task">
-            <div class="task-info">
-                <input type="checkbox" name="task-1" id="task-1">
-                <p class="task-desc">Buy Apples</p>
-            </div>
-            <div class="task-buttons">
-                <img src="" alt="edit task" id="edit-task">
-                <img src="" alt="delete task" id="delete-task">
-            </div>
-        </div> */
-}
 
 const getTaskHTML = (task, id) => {
   const taskDiv = document.createElement('div');
+  taskDiv.classList.add('task');
 
   const taskInfoDiv = document.createElement('div');
   taskInfoDiv.classList.add('task-info');
@@ -200,12 +189,14 @@ const getTaskHTML = (task, id) => {
   taskCheckbox.type = 'checkbox';
   taskCheckbox.name = `task-checkbox-${id}`;
   taskCheckbox.id = `task-checkbox-${id}`;
+  taskCheckbox.checked = task.task.getIsDone();
   taskCheckbox.classList.add('task-checkbox');
+  taskCheckbox.addEventListener('click', (e) => handleTaskCheckboxClick(e, id));
 
   const taskTitle = document.createElement('p');
   taskTitle.id = `task-title-${id}`;
   taskTitle.classList.add('task-title');
-  taskTitle.innerText = task.title;
+  taskTitle.innerText = task.task.title;
 
   taskInfoDiv.appendChild(taskCheckbox);
   taskInfoDiv.appendChild(taskTitle);
@@ -234,6 +225,24 @@ const getTaskHTML = (task, id) => {
   return taskDiv;
 };
 
+const handleTaskCheckboxClick = (e, taskId) => {
+  if (e.target.checked) {
+    storage.getTasks()[taskId].task.setDone();
+  } else {
+    storage.getTasks()[taskId].task.setDoing();
+  }
+};
+
+const renderTasks = (tasks) => {
+  const main = document.querySelector('#main');
+  main.replaceChildren();
+  tasks.forEach((task, id) => {
+    console.log(task);
+    const taskHTML = getTaskHTML(task, id);
+    main.appendChild(taskHTML);
+  });
+};
+
 const addTaskButton = document.querySelector('#add-task');
 addTaskButton.addEventListener('click', handleAddTask);
 
@@ -251,3 +260,11 @@ closeProjectForm.addEventListener('click', handleCloseProjectForm);
 
 const submitProjectButton = document.querySelector('#submit-project');
 submitProjectButton.addEventListener('click', handleSubmitProject);
+
+const task = createTask('Buy Apples', '2022-04-06', 'high');
+
+task.setDone();
+
+storage.addTask(task, 0);
+
+renderTasks(storage.getTasks());
