@@ -213,3 +213,7 @@ body {
 .selected-status {
   color: var(--fourth-bg-color);
 }
+
+#view-all {
+  cursor: pointer;
+}

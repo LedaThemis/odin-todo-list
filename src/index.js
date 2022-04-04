@@ -2,7 +2,7 @@ import './styles.css';
 import editIcon from './edit_icon.svg';
 import clearIcon from './clear_icon.svg';
 
-let SELECTED_PROJECT_ID = 0;
+let SELECTED_PROJECT_ID = -1;
 
 const createTask = (title, dueDate, priority) => {
   let isDone = false;
@@ -276,6 +276,13 @@ const getProjectHTML = (name, id) => {
   if (id === SELECTED_PROJECT_ID) {
     li.classList.add('selected-project');
   }
+  if (SELECTED_PROJECT_ID === -1) {
+    const viewAll = document.querySelector('#view-all');
+    viewAll.classList.add('selected-project');
+  } else {
+    const viewAll = document.querySelector('#view-all');
+    viewAll.classList.remove('selected-project');
+  }
 
   li.addEventListener('click', (e) => handleProjectSelect(e, id));
 
@@ -385,11 +392,19 @@ const handleCloseEditTaskForm = (e) => {
   hideEditTaskForm();
 };
 
+const handleViewAllClick = (e) => {
+  SELECTED_PROJECT_ID = -1;
+  renderProjects(storage.getProjects());
+  renderTasks(storage.getTasks());
+};
+
 const renderTasks = (tasks) => {
   const main = document.querySelector('#main');
   main.replaceChildren();
+  if (SELECTED_PROJECT_ID !== -1) {
+    tasks = tasks.filter((task) => task.projectId === SELECTED_PROJECT_ID);
+  }
   tasks.forEach((task, id) => {
-    if (task.projectId !== SELECTED_PROJECT_ID) return;
     const taskHTML = getTaskHTML(task, id);
     main.appendChild(taskHTML);
   });
@@ -427,6 +442,9 @@ submitProjectButton.addEventListener('click', handleSubmitProject);
 
 const submitEditTaskButton = document.querySelector('#submit-edit-task');
 submitEditTaskButton.addEventListener('click', handleSubmitEditTask);
+
+const viewAll = document.querySelector('#view-all');
+viewAll.addEventListener('click', handleViewAllClick);
 
 const task = createTask('Buy Apples', '2022-04-06', 'high');
 
