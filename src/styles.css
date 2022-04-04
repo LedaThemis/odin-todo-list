@@ -116,6 +116,11 @@ body {
   cursor: pointer;
 }
 
+.right-task-div {
+  display: flex;
+  gap: 2rem;
+}
+
 #add-task {
   border: none;
   cursor: pointer;

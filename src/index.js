@@ -269,6 +269,12 @@ const getTaskHTML = (task, id) => {
   taskInfoDiv.appendChild(taskCheckbox);
   taskInfoDiv.appendChild(taskTitle);
 
+  const rightDiv = document.createElement('div');
+  rightDiv.classList.add('right-task-div');
+
+  const taskDueDate = document.createElement('p');
+  taskDueDate.innerText = task.task.getDueDate();
+
   const taskButtonsDiv = document.createElement('div');
   taskButtonsDiv.classList.add('task-buttons');
 
@@ -289,8 +295,11 @@ const getTaskHTML = (task, id) => {
   taskButtonsDiv.appendChild(editTaskButton);
   taskButtonsDiv.appendChild(deleteTaskButton);
 
+  rightDiv.appendChild(taskDueDate);
+  rightDiv.appendChild(taskButtonsDiv);
+
   taskDiv.appendChild(taskInfoDiv);
-  taskDiv.appendChild(taskButtonsDiv);
+  taskDiv.appendChild(rightDiv);
 
   return taskDiv;
 };
@@ -508,8 +517,6 @@ const viewAll = document.querySelector('#view-all');
 viewAll.addEventListener('click', handleViewAllClick);
 
 const task = createTask('Buy Apples', '2022-04-06', 'high');
-
-task.setDone();
 
 storage.addTask(task, 0);
 
