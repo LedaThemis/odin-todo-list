@@ -55,6 +55,7 @@ const storage = (() => {
   };
   const removeProject = (id) => {
     projects = projects.slice(0, id).concat(projects.slice(id + 1));
+    tasks = tasks.filter((task) => task.projectId !== id);
   };
 
   const getProjects = () => {
@@ -158,7 +159,7 @@ function handleSubmitTask(e) {
   const title = formData.get('task-name');
   const dueDate = formData.get('task-dueDate');
   const priority = formData.get('task-priority');
-  const projectId = formData.get('task-project');
+  const projectId = parseInt(formData.get('task-project'));
 
   const p = document.querySelector('#fill-all-required-fields');
   if (!title || !dueDate | !priority || !projectId) {
@@ -183,6 +184,8 @@ function handleAddProject(e) {
 const handleProjectDelete = (e, projectId) => {
   storage.removeProject(projectId);
   renderProjects(storage.getProjects());
+  renderTasks(storage.getTasks());
+  console.log(storage.getTasks());
 };
 
 const handleCloseProjectForm = () => {
@@ -338,7 +341,7 @@ function handleSubmitEditTask(e) {
   const title = formData.get('edit-task-name');
   const dueDate = formData.get('edit-task-dueDate');
   const priority = formData.get('edit-task-priority');
-  const projectId = formData.get('edit-task-project');
+  const projectId = parseInt(formData.get('edit-task-project'));
 
   const taskId = parseInt(e.target.dataset.key);
   const task = storage.getTasks()[taskId].task;
