@@ -36,6 +36,7 @@
                         <li>Family</li>
                     </ul>
                 </li>
+                <button id="add-project">+</button>
                 <li>View All</li>
             </ul>
         </nav>
@@ -52,9 +53,58 @@
             </div>
         </div>
     </main>
-    <button class="add-task">
+    <button id="add-task">
         <i class="fa fa-plus"></i>
     </button>
+
+    <div id="add-task-div" style="display:none">
+        <form id="add-task-form">
+            <button type="button" id="close-task-form" class="form-buttons">✕</button>
+            <fieldset>
+                <legend>Task Details</legend>
+                <div>
+                    <label for="task-name">Name:</label>
+                    <input type="text" name="task-name" id="task-name" required>
+                </div>
+                <div>
+                    <label for="task-dueDate">Due Date:</label>
+                    <input type="date" name="task-dueDate" id="task-dueDate" required>
+                </div>
+                <div>
+                    <label for="task-priority">Priority:</label>
+
+                    <select name="task-priority" id="task-priority" required>
+                        <option value="" disabled selected></option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="task-project">Project:</label>
+                    <select name="task-project" id="task-project" required>
+                    </select>
+                </div>
+            </fieldset>
+            <div>
+                <button id="submit-task" class="form-buttons" type="button">Submit</button>
+            </div>
+            <p id="fill-all-required-fields"></p>
+        </form>
+    </div>
+    <div id="add-project-div" style="display: none;">
+        <form id="add-project-form">
+            <button type="button" class="form-buttons" id="close-project-form">✕</button>
+            <fieldset>
+                <legend>Project Name</legend>
+                <input type="text" name="project-name" id="project-name" required>
+            </fieldset>
+            <div>
+                <button id="submit-project" class="form-buttons" type="button">Submit</button>
+            </div>
+            <p id="fill-project-name"></p>
+        </form>
+    </div>
 </body>
 
 </html>
