@@ -15,12 +15,7 @@ const helpers = (() => {
     return { taskName, taskDueDate, taskPriority, taskIsDone };
   };
 
-  const convertTaskForUse = ({
-    taskName,
-    taskDueDate,
-    taskPriority,
-    taskIsDone,
-  }) => {
+  const convertTaskForUse = ({ taskName, taskDueDate, taskPriority, taskIsDone }) => {
     const task = createTask(taskName, taskDueDate, taskPriority);
     if (taskIsDone) {
       task.setDone();
@@ -56,9 +51,7 @@ const DOMHelpers = (() => {
 const DOMHandlers = (() => {
   const handleAddTask = (e) => {
     const projectsDropdown = document.querySelector('#task-project');
-    const dropdownValues = DOMHelpers.getProjectsDropdownValues(
-      storage.getProjects()
-    );
+    const dropdownValues = DOMHelpers.getProjectsDropdownValues(storage.getProjects());
 
     projectsDropdown.replaceChildren();
 
@@ -67,9 +60,7 @@ const DOMHandlers = (() => {
     emptyOption.disabled = true;
     projectsDropdown.appendChild(emptyOption);
 
-    dropdownValues.forEach((dropdownValue) =>
-      projectsDropdown.appendChild(dropdownValue)
-    );
+    dropdownValues.forEach((dropdownValue) => projectsDropdown.appendChild(dropdownValue));
     UI.showAddTaskForm();
   };
 
@@ -99,11 +90,7 @@ const DOMHandlers = (() => {
     const projectId = parseInt(formData.get('task-project'));
 
     const p = document.querySelector('#fill-all-required-fields');
-    if (
-      title === '' ||
-      (dueDate === '') | (priority === null) ||
-      isNaN(projectId)
-    ) {
+    if (title === '' || (dueDate === '') | (priority === null) || isNaN(projectId)) {
       p.textContent = 'Please fill all the fields.';
       return;
     }
@@ -207,9 +194,7 @@ const DOMHandlers = (() => {
 
   const handleTaskEdit = (e, taskId) => {
     const projectsDropdown = document.querySelector('#edit-task-project');
-    const dropdownValues = DOMHelpers.getProjectsDropdownValues(
-      storage.getProjects()
-    );
+    const dropdownValues = DOMHelpers.getProjectsDropdownValues(storage.getProjects());
 
     projectsDropdown.replaceChildren();
 
@@ -218,9 +203,7 @@ const DOMHandlers = (() => {
     emptyOption.disabled = true;
     projectsDropdown.appendChild(emptyOption);
 
-    dropdownValues.forEach((dropdownValue) =>
-      projectsDropdown.appendChild(dropdownValue)
-    );
+    dropdownValues.forEach((dropdownValue) => projectsDropdown.appendChild(dropdownValue));
 
     const task = storage.getTasks()[taskId].task;
 
@@ -314,9 +297,7 @@ const render = (() => {
       return SELECTED_PROJECT_ID === -1 || projectId === SELECTED_PROJECT_ID;
     };
     const inStatus = (isDone) => {
-      return (
-        (isDone && SELECTED_STATUS === 1) || (!isDone && SELECTED_STATUS === 0)
-      );
+      return (isDone && SELECTED_STATUS === 1) || (!isDone && SELECTED_STATUS === 0);
     };
     return inProject(projectId) && inStatus(task.task.getIsDone());
   };
@@ -326,11 +307,7 @@ const render = (() => {
     main.replaceChildren();
 
     tasks.forEach((task, id) => {
-      const taskHTML = getHTML.task(
-        task,
-        id,
-        !passFilter(task, task.projectId)
-      );
+      const taskHTML = getHTML.task(task, id, !passFilter(task, task.projectId));
       main.appendChild(taskHTML);
     });
 
@@ -407,9 +384,7 @@ const getHTML = (() => {
     taskCheckbox.id = `task-checkbox-${id}`;
     taskCheckbox.checked = task.task.getIsDone();
     taskCheckbox.classList.add('task-checkbox');
-    taskCheckbox.addEventListener('click', (e) =>
-      handleTaskCheckboxClick(e, id)
-    );
+    taskCheckbox.addEventListener('click', (e) => handleTaskCheckboxClick(e, id));
 
     const taskTitle = document.createElement('p');
     taskTitle.id = `task-title-${id}`;
@@ -618,42 +593,23 @@ const storage = (() => {
 
 const DOM = (() => {
   const addTaskButton = document.querySelector('#add-task');
-  addTaskButton.addEventListener('click', DOMHandlers.handleAddTask);
-
   const addProjectButton = document.querySelector('#add-project');
-  addProjectButton.addEventListener('click', DOMHandlers.handleAddProject);
-
   const closeFormButton = document.querySelector('#close-task-form');
-  closeFormButton.addEventListener('click', DOMHandlers.handleCloseTaskForm);
-
   const closeProjectForm = document.querySelector('#close-project-form');
-  closeProjectForm.addEventListener(
-    'click',
-    DOMHandlers.handleCloseProjectForm
-  );
-
   const closeEditTaskForm = document.querySelector('#close-task-edit-form');
-  closeEditTaskForm.addEventListener(
-    'click',
-    DOMHandlers.handleCloseEditTaskForm
-  );
-
   const submitTaskButton = document.querySelector('#submit-task');
-  submitTaskButton.addEventListener('click', DOMHandlers.handleSubmitTask);
-
   const submitProjectButton = document.querySelector('#submit-project');
-  submitProjectButton.addEventListener(
-    'click',
-    DOMHandlers.handleSubmitProject
-  );
-
   const submitEditTaskButton = document.querySelector('#submit-edit-task');
-  submitEditTaskButton.addEventListener(
-    'click',
-    DOMHandlers.handleSubmitEditTask
-  );
-
   const viewAll = document.querySelector('#view-all');
+
+  addTaskButton.addEventListener('click', DOMHandlers.handleAddTask);
+  addProjectButton.addEventListener('click', DOMHandlers.handleAddProject);
+  closeFormButton.addEventListener('click', DOMHandlers.handleCloseTaskForm);
+  closeProjectForm.addEventListener('click', DOMHandlers.handleCloseProjectForm);
+  closeEditTaskForm.addEventListener('click', DOMHandlers.handleCloseEditTaskForm);
+  submitTaskButton.addEventListener('click', DOMHandlers.handleSubmitTask);
+  submitProjectButton.addEventListener('click', DOMHandlers.handleSubmitProject);
+  submitEditTaskButton.addEventListener('click', DOMHandlers.handleSubmitEditTask);
   viewAll.addEventListener('click', DOMHandlers.handleViewAllClick);
 })();
 
