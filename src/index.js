@@ -285,7 +285,7 @@ const handleTaskEdit = (e, taskId) => {
   showEditTaskForm();
 };
 
-function handleEditTaskSubmit(e) {
+function handleSubmitEditTask(e) {
   const form = document.querySelector('#edit-task-form');
   const formData = new FormData(form);
   const title = formData.get('edit-task-name');
@@ -318,6 +318,10 @@ function handleEditTaskSubmit(e) {
   renderTasks(storage.getTasks());
 }
 
+const handleCloseEditTaskForm = (e) => {
+  hideEditTaskForm();
+};
+
 const renderTasks = (tasks) => {
   const main = document.querySelector('#main');
   main.replaceChildren();
@@ -339,6 +343,9 @@ closeFormButton.addEventListener('click', handleCloseForm);
 const closeProjectForm = document.querySelector('#close-project-form');
 closeProjectForm.addEventListener('click', handleCloseProjectForm);
 
+const closeEditTaskForm = document.querySelector('#close-task-edit-form');
+closeEditTaskForm.addEventListener('click', handleCloseEditTaskForm);
+
 const submitTaskButton = document.querySelector('#submit-task');
 submitTaskButton.addEventListener('click', handleSubmitTask);
 
@@ -346,7 +353,7 @@ const submitProjectButton = document.querySelector('#submit-project');
 submitProjectButton.addEventListener('click', handleSubmitProject);
 
 const submitEditTaskButton = document.querySelector('#submit-edit-task');
-submitEditTaskButton.addEventListener('click', handleEditTaskSubmit);
+submitEditTaskButton.addEventListener('click', handleSubmitEditTask);
 
 const task = createTask('Buy Apples', '2022-04-06', 'high');
 
