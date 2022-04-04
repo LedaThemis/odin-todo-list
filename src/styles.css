@@ -133,7 +133,8 @@ body {
   text-decoration: none;
 }
 
-#add-task-div {
+#add-task-div,
+#add-project-div {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -141,9 +142,12 @@ body {
   display: grid;
   align-items: center;
   justify-content: center;
+
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
-#add-task-form {
+#add-task-form,
+#add-project-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -158,8 +162,7 @@ body {
   border-radius: 1rem;
 }
 
-#submit-task,
-#close-form {
+.form-buttons {
   border: none;
   background-color: var(--secondary-bg-color);
   color: var(--main-text-color);
@@ -168,18 +171,29 @@ body {
 
   cursor: pointer;
 }
-#submit-task {
+#submit-task,
+#submit-project {
   width: 10rem;
   height: 2rem;
 }
 
-#close-form {
+#close-task-form,
+#close-project-form {
   align-self: flex-end;
   width: 2rem;
   height: 2rem;
 }
 
-#fill-all-required-fields {
+#fill-all-required-fields,
+#fill-project-name {
   font-size: 1rem;
   font-weight: bold;
+}
+
+#add-project-form > fieldset {
+  display: flex;
+  align-items: center;
+}
+#project-name {
+  width: 100%;
 }
