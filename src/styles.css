@@ -4,6 +4,10 @@
   --third-bg-color: #064663;
   --fourth-bg-color: #ecb365;
 
+  --high-priority-color: red;
+  --medium-priority-color: yellow;
+  --low-priority-color: green;
+
   --main-text-color: #ffffff;
 
   --title-font-family: Raleway, sans-serif;
@@ -220,4 +224,14 @@ body {
 
 #view-all {
   cursor: pointer;
+}
+
+.high-priority-task {
+  border-left: 2px solid var(--high-priority-color);
+}
+.medium-priority-task {
+  border-left: 2px solid var(--medium-priority-color);
+}
+.low-priority-task {
+  border-left: 2px solid var(--low-priority-color);
 }

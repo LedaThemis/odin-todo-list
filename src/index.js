@@ -165,7 +165,11 @@ function handleSubmitTask(e) {
   const projectId = parseInt(formData.get('task-project'));
 
   const p = document.querySelector('#fill-all-required-fields');
-  if (!title || !dueDate | !priority || !projectId) {
+  if (
+    title === '' ||
+    (dueDate === '') | (priority === null) ||
+    isNaN(projectId)
+  ) {
     p.textContent = 'Please fill all the fields.';
     return;
   }
@@ -230,6 +234,21 @@ const handleStatusClick = (e, id) => {
 const getTaskHTML = (task, id) => {
   const taskDiv = document.createElement('div');
   taskDiv.classList.add('task');
+
+  let priorityClass;
+  switch (task.task.getPriority()) {
+    case 'high':
+      priorityClass = 'high-priority-task';
+      break;
+    case 'medium':
+      priorityClass = 'medium-priority-task';
+      break;
+    case 'low':
+      priorityClass = 'low-priority-task';
+      break;
+  }
+
+  taskDiv.classList.add(priorityClass);
 
   const taskInfoDiv = document.createElement('div');
   taskInfoDiv.classList.add('task-info');
@@ -388,19 +407,19 @@ function handleSubmitEditTask(e) {
   const taskId = parseInt(e.target.dataset.key);
   const task = storage.getTasks()[taskId].task;
 
-  if (title) {
+  if (title !== '') {
     task.setTitle(title);
   }
 
-  if (dueDate) {
+  if (dueDate !== '') {
     task.setDueDate(dueDate);
   }
 
-  if (priority) {
+  if (priority !== null) {
     task.setPriority(priority);
   }
 
-  if (projectId) {
+  if (!isNaN(projectId)) {
     storage.setTaskProjectId(taskId, projectId);
   }
 
