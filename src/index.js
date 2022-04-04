@@ -73,6 +73,10 @@ const storage = (() => {
     return tasks;
   };
 
+  const setTaskProjectId = (taskId, newProjectId) => {
+    tasks[taskId].projectId = newProjectId;
+  };
+
   return {
     addTask,
     removeTask,
@@ -80,6 +84,7 @@ const storage = (() => {
     addProject,
     removeProject,
     getProjects,
+    setTaskProjectId,
   };
 })();
 
@@ -100,18 +105,28 @@ const showAddTaskForm = () => {
   addTaskFormDiv.style.display = 'grid';
 };
 
-const hideAddTaskForm = () => {
-  const addTaskFormDiv = document.querySelector('#add-task-div');
-  addTaskFormDiv.style.display = 'none';
-};
-
 const showAddProjectForm = () => {
   const addProjectFormDiv = document.querySelector('#add-project-div');
   addProjectFormDiv.style.display = 'grid';
 };
 
+const showEditTaskForm = () => {
+  const addProjectFormDiv = document.querySelector('#edit-task-div');
+  addProjectFormDiv.style.display = 'grid';
+};
+
+const hideAddTaskForm = () => {
+  const addTaskFormDiv = document.querySelector('#add-task-div');
+  addTaskFormDiv.style.display = 'none';
+};
+
 const hideAddProjectForm = () => {
   const addProjectFormDiv = document.querySelector('#add-project-div');
+  addProjectFormDiv.style.display = 'none';
+};
+
+const hideEditTaskForm = () => {
+  const addProjectFormDiv = document.querySelector('#edit-task-div');
   addProjectFormDiv.style.display = 'none';
 };
 
@@ -249,7 +264,59 @@ const handleTaskDelete = (e, taskId) => {
   renderTasks(storage.getTasks());
 };
 
-const handleTaskEdit = (e, taskId) => {};
+const handleTaskEdit = (e, taskId) => {
+  const projectsDropdown = document.querySelector('#edit-task-project');
+  const dropdownValues = getProjectsDropdownValues(storage.getProjects());
+
+  projectsDropdown.replaceChildren();
+
+  const emptyOption = createOptionElement('', '');
+  emptyOption.selected = true;
+  emptyOption.disabled = true;
+  projectsDropdown.appendChild(emptyOption);
+
+  dropdownValues.forEach((dropdownValue) =>
+    projectsDropdown.appendChild(dropdownValue)
+  );
+
+  const submitEditTaskButton = document.querySelector('#submit-edit-task');
+  submitEditTaskButton.dataset.key = taskId;
+
+  showEditTaskForm();
+};
+
+function handleEditTaskSubmit(e) {
+  const form = document.querySelector('#edit-task-form');
+  const formData = new FormData(form);
+  const title = formData.get('edit-task-name');
+  const dueDate = formData.get('edit-task-dueDate');
+  const priority = formData.get('edit-task-priority');
+  const projectId = formData.get('edit-task-project');
+
+  const taskId = parseInt(e.target.dataset.key);
+  const task = storage.getTasks()[taskId].task;
+
+  if (title) {
+    task.setTitle(title);
+  }
+
+  if (dueDate) {
+    task.setDueDate(dueDate);
+  }
+
+  if (priority) {
+    task.setPriority(priority);
+  }
+
+  if (projectId) {
+    storage.setTaskProjectId(taskId, projectId);
+  }
+
+  form.reset();
+  hideEditTaskForm();
+
+  renderTasks(storage.getTasks());
+}
 
 const renderTasks = (tasks) => {
   const main = document.querySelector('#main');
@@ -263,20 +330,23 @@ const renderTasks = (tasks) => {
 const addTaskButton = document.querySelector('#add-task');
 addTaskButton.addEventListener('click', handleAddTask);
 
-const closeFormButton = document.querySelector('#close-task-form');
-closeFormButton.addEventListener('click', handleCloseForm);
-
-const submitTaskButton = document.querySelector('#submit-task');
-submitTaskButton.addEventListener('click', handleSubmitTask);
-
 const addProjectButton = document.querySelector('#add-project');
 addProjectButton.addEventListener('click', handleAddProject);
+
+const closeFormButton = document.querySelector('#close-task-form');
+closeFormButton.addEventListener('click', handleCloseForm);
 
 const closeProjectForm = document.querySelector('#close-project-form');
 closeProjectForm.addEventListener('click', handleCloseProjectForm);
 
+const submitTaskButton = document.querySelector('#submit-task');
+submitTaskButton.addEventListener('click', handleSubmitTask);
+
 const submitProjectButton = document.querySelector('#submit-project');
 submitProjectButton.addEventListener('click', handleSubmitProject);
+
+const submitEditTaskButton = document.querySelector('#submit-edit-task');
+submitEditTaskButton.addEventListener('click', handleEditTaskSubmit);
 
 const task = createTask('Buy Apples', '2022-04-06', 'high');
 

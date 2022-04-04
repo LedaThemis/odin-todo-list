@@ -47,9 +47,9 @@
         <i class="fa fa-plus"></i>
     </button>
 
-    <div id="add-task-div" style="display:none">
-        <form id="add-task-form">
-            <button type="button" id="close-task-form" class="form-buttons">✕</button>
+    <div id="add-task-div" style="display:none" class="task-form-divs">
+        <form id="add-task-form" class="task-forms">
+            <button type="button" id="close-task-form" class="form-buttons close-form-button">✕</button>
             <fieldset>
                 <legend>Task Details</legend>
                 <div>
@@ -77,22 +77,57 @@
                 </div>
             </fieldset>
             <div>
-                <button id="submit-task" class="form-buttons" type="button">Submit</button>
+                <button id="submit-task" class="form-buttons submit-form-buttons" type="button">Submit</button>
             </div>
             <p id="fill-all-required-fields"></p>
         </form>
     </div>
-    <div id="add-project-div" style="display: none;">
-        <form id="add-project-form">
-            <button type="button" class="form-buttons" id="close-project-form">✕</button>
+    <div id="add-project-div" style="display: none;" class="task-form-divs">
+        <form id="add-project-form" class="task-forms">
+            <button type="button" class="form-buttons close-form-button" id="close-project-form">✕</button>
             <fieldset>
                 <legend>Project Name</legend>
                 <input type="text" name="project-name" id="project-name" required>
             </fieldset>
             <div>
-                <button id="submit-project" class="form-buttons" type="button">Submit</button>
+                <button id="submit-project" class="form-buttons submit-form-buttons" type="button">Submit</button>
             </div>
             <p id="fill-project-name"></p>
+        </form>
+    </div>
+    <div id="edit-task-div" style="display: none;" class="task-form-divs">
+        <form id="edit-task-form" class="task-forms">
+            <button type="button" id="close-task-edit-form" class="form-buttons close-form-button">✕</button>
+            <fieldset>
+                <legend>Editing Task</legend>
+                <div>
+                    <label for="edit-task-name">Name:</label>
+                    <input type="text" name="edit-task-name" id="edit-task-name" required>
+                </div>
+                <div>
+                    <label for="edit-task-dueDate">Due Date:</label>
+                    <input type="date" name="edit-task-dueDate" id="edit-task-dueDate" required>
+                </div>
+                <div>
+                    <label for="edit-task-priority">Priority:</label>
+
+                    <select name="edit-task-priority" id="edit-task-priority" required>
+                        <option value="" disabled selected></option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="edit-task-project">Project:</label>
+                    <select name="edit-task-project" id="edit-task-project" required>
+                    </select>
+                </div>
+            </fieldset>
+            <div>
+                <button id="submit-edit-task" class="form-buttons submit-form-buttons" type="button">Edit</button>
+            </div>
+            <p id="fill-all-edit-values">Provide values you want to edit.</p>
         </form>
     </div>
 </body>

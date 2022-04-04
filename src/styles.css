@@ -133,8 +133,7 @@ body {
   text-decoration: none;
 }
 
-#add-task-div,
-#add-project-div {
+.task-form-divs {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -146,8 +145,7 @@ body {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-#add-task-form,
-#add-project-form {
+.task-forms {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -171,21 +169,20 @@ body {
 
   cursor: pointer;
 }
-#submit-task,
-#submit-project {
+.submit-form-buttons {
   width: 10rem;
   height: 2rem;
 }
 
-#close-task-form,
-#close-project-form {
+.close-form-button {
   align-self: flex-end;
   width: 2rem;
   height: 2rem;
 }
 
 #fill-all-required-fields,
-#fill-project-name {
+#fill-project-name,
+#fill-all-edit-values {
   font-size: 1rem;
   font-weight: bold;
 }
