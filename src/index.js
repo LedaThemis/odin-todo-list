@@ -616,38 +616,46 @@ const storage = (() => {
   };
 })();
 
-const addTaskButton = document.querySelector('#add-task');
-addTaskButton.addEventListener('click', DOMHandlers.handleAddTask);
+const DOM = (() => {
+  const addTaskButton = document.querySelector('#add-task');
+  addTaskButton.addEventListener('click', DOMHandlers.handleAddTask);
 
-const addProjectButton = document.querySelector('#add-project');
-addProjectButton.addEventListener('click', DOMHandlers.handleAddProject);
+  const addProjectButton = document.querySelector('#add-project');
+  addProjectButton.addEventListener('click', DOMHandlers.handleAddProject);
 
-const closeFormButton = document.querySelector('#close-task-form');
-closeFormButton.addEventListener('click', DOMHandlers.handleCloseTaskForm);
+  const closeFormButton = document.querySelector('#close-task-form');
+  closeFormButton.addEventListener('click', DOMHandlers.handleCloseTaskForm);
 
-const closeProjectForm = document.querySelector('#close-project-form');
-closeProjectForm.addEventListener('click', DOMHandlers.handleCloseProjectForm);
+  const closeProjectForm = document.querySelector('#close-project-form');
+  closeProjectForm.addEventListener(
+    'click',
+    DOMHandlers.handleCloseProjectForm
+  );
 
-const closeEditTaskForm = document.querySelector('#close-task-edit-form');
-closeEditTaskForm.addEventListener(
-  'click',
-  DOMHandlers.handleCloseEditTaskForm
-);
+  const closeEditTaskForm = document.querySelector('#close-task-edit-form');
+  closeEditTaskForm.addEventListener(
+    'click',
+    DOMHandlers.handleCloseEditTaskForm
+  );
 
-const submitTaskButton = document.querySelector('#submit-task');
-submitTaskButton.addEventListener('click', DOMHandlers.handleSubmitTask);
+  const submitTaskButton = document.querySelector('#submit-task');
+  submitTaskButton.addEventListener('click', DOMHandlers.handleSubmitTask);
 
-const submitProjectButton = document.querySelector('#submit-project');
-submitProjectButton.addEventListener('click', DOMHandlers.handleSubmitProject);
+  const submitProjectButton = document.querySelector('#submit-project');
+  submitProjectButton.addEventListener(
+    'click',
+    DOMHandlers.handleSubmitProject
+  );
 
-const submitEditTaskButton = document.querySelector('#submit-edit-task');
-submitEditTaskButton.addEventListener(
-  'click',
-  DOMHandlers.handleSubmitEditTask
-);
+  const submitEditTaskButton = document.querySelector('#submit-edit-task');
+  submitEditTaskButton.addEventListener(
+    'click',
+    DOMHandlers.handleSubmitEditTask
+  );
 
-const viewAll = document.querySelector('#view-all');
-viewAll.addEventListener('click', DOMHandlers.handleViewAllClick);
+  const viewAll = document.querySelector('#view-all');
+  viewAll.addEventListener('click', DOMHandlers.handleViewAllClick);
+})();
 
 render.tasks(storage.getTasks());
 render.projects(storage.getProjects());
