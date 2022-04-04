@@ -2,6 +2,7 @@ import './styles.css';
 import editIcon from './edit_icon.svg';
 import clearIcon from './clear_icon.svg';
 
+let SELECTED_STATUS = 0;
 let SELECTED_PROJECT_ID = -1;
 
 const createTask = (title, dueDate, priority) => {
@@ -220,6 +221,12 @@ const handleProjectSelect = (e, id) => {
   renderTasks(storage.getTasks());
 };
 
+const handleStatusClick = (e, id) => {
+  SELECTED_STATUS = id;
+  renderStatus();
+  renderTasks(storage.getTasks());
+};
+
 const getTaskHTML = (task, id) => {
   const taskDiv = document.createElement('div');
   taskDiv.classList.add('task');
@@ -306,12 +313,27 @@ const getProjectHTML = (name, id) => {
   return li;
 };
 
+const getStatusHTML = (s, id) => {
+  const li = document.createElement('li');
+  li.innerText = s;
+  li.classList.add('status-choice');
+
+  li.addEventListener('click', (e) => handleStatusClick(e, id));
+  if (SELECTED_STATUS === id) {
+    li.classList.add('selected-status');
+  }
+
+  return li;
+};
+
 const handleTaskCheckboxClick = (e, taskId) => {
   if (e.target.checked) {
     storage.getTasks()[taskId].task.setDone();
   } else {
     storage.getTasks()[taskId].task.setDoing();
   }
+
+  renderTasks(storage.getTasks());
 };
 
 const handleTaskDelete = (e, taskId) => {
@@ -404,6 +426,15 @@ const renderTasks = (tasks) => {
   if (SELECTED_PROJECT_ID !== -1) {
     tasks = tasks.filter((task) => task.projectId === SELECTED_PROJECT_ID);
   }
+
+  tasks = tasks.filter((task) => {
+    if (task.task.getIsDone() && SELECTED_STATUS === 1) {
+      return task;
+    } else if (!task.task.getIsDone() && SELECTED_STATUS === 0) {
+      return task;
+    }
+  });
+
   tasks.forEach((task, id) => {
     const taskHTML = getTaskHTML(task, id);
     main.appendChild(taskHTML);
@@ -416,6 +447,17 @@ const renderProjects = (projects) => {
   projects.forEach((project, id) => {
     const projectHTML = getProjectHTML(project, id);
     projectsUl.appendChild(projectHTML);
+  });
+};
+
+const renderStatus = () => {
+  const status = ['Doing', 'Done'];
+  const statusList = document.querySelector('#status-list');
+  statusList.replaceChildren();
+
+  status.forEach((s, i) => {
+    const liHTML = getStatusHTML(s, i);
+    statusList.appendChild(liHTML);
   });
 };
 
@@ -454,3 +496,4 @@ storage.addTask(task, 0);
 
 renderTasks(storage.getTasks());
 renderProjects(storage.getProjects());
+renderStatus();

@@ -214,6 +214,10 @@ body {
   color: var(--fourth-bg-color);
 }
 
+.status-choice {
+  cursor: pointer;
+}
+
 #view-all {
   cursor: pointer;
 }
