@@ -2,6 +2,8 @@ import './styles.css';
 import editIcon from './edit_icon.svg';
 import clearIcon from './clear_icon.svg';
 
+let SELECTED_PROJECT_ID = 0;
+
 const createTask = (title, dueDate, priority) => {
   let isDone = false;
   let _priority = priority;
@@ -185,7 +187,6 @@ const handleProjectDelete = (e, projectId) => {
   storage.removeProject(projectId);
   renderProjects(storage.getProjects());
   renderTasks(storage.getTasks());
-  console.log(storage.getTasks());
 };
 
 const handleCloseProjectForm = () => {
@@ -212,6 +213,12 @@ function handleSubmitProject(e) {
 
   renderProjects(storage.getProjects());
 }
+
+const handleProjectSelect = (e, id) => {
+  SELECTED_PROJECT_ID = id;
+  renderProjects(storage.getProjects());
+  renderTasks(storage.getTasks());
+};
 
 const getTaskHTML = (task, id) => {
   const taskDiv = document.createElement('div');
@@ -265,6 +272,12 @@ const getTaskHTML = (task, id) => {
 const getProjectHTML = (name, id) => {
   const li = document.createElement('li');
   li.classList.add('project-names');
+
+  if (id === SELECTED_PROJECT_ID) {
+    li.classList.add('selected-project');
+  }
+
+  li.addEventListener('click', (e) => handleProjectSelect(e, id));
 
   const p = document.createElement('p');
   p.innerText = name;
@@ -376,6 +389,7 @@ const renderTasks = (tasks) => {
   const main = document.querySelector('#main');
   main.replaceChildren();
   tasks.forEach((task, id) => {
+    if (task.projectId !== SELECTED_PROJECT_ID) return;
     const taskHTML = getTaskHTML(task, id);
     main.appendChild(taskHTML);
   });

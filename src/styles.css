@@ -2,6 +2,7 @@
   --main-bg-color: #041c32;
   --secondary-bg-color: #04293a;
   --third-bg-color: #064663;
+  --fourth-bg-color: #ecb365;
 
   --main-text-color: #ffffff;
 
@@ -204,4 +205,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  cursor: pointer;
+}
+
+.selected-project,
+.selected-status {
+  color: var(--fourth-bg-color);
 }
