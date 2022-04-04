@@ -279,6 +279,20 @@ const handleTaskEdit = (e, taskId) => {
     projectsDropdown.appendChild(dropdownValue)
   );
 
+  const task = storage.getTasks()[taskId].task;
+
+  const editTaskNameInput = document.querySelector('#edit-task-name');
+  editTaskNameInput.value = task.getTitle();
+
+  const editTaskDueDateInput = document.querySelector('#edit-task-dueDate');
+  editTaskDueDateInput.value = task.getDueDate();
+
+  const editTaskPriorityInput = document.querySelector('#edit-task-priority');
+  editTaskPriorityInput.value = task.getPriority();
+
+  const editTaskProjectInput = document.querySelector('#edit-task-project');
+  editTaskProjectInput.value = storage.getTasks()[taskId].projectId;
+
   const submitEditTaskButton = document.querySelector('#submit-edit-task');
   submitEditTaskButton.dataset.key = taskId;
 
